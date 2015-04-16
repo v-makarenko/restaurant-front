@@ -1,0 +1,18 @@
+.my-page-header{
+    height: 50px;
+    background-color: rgb(119, 125, 255);
+}
+.page-menu{
+    /*width:200px;*/
+    background-color: rgb(198, 207, 255);
+    float: left;
+}
+.menu-item-active{
+    background-color: rgb(255, 255, 255);
+}
+.my-content{
+}
+
+#not-header{
+    clear:both;
+}

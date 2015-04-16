@@ -1,0 +1,13 @@
+<div set-active-tab tab-id="'menu'"></div>
+<div class="order-table">
+    <div ng-repeat='menuItem in menuItems' class="order-item">
+        * {{menuItem.name}}
+        <div ng-repeat="custom in menuItem.customs">
+           &nbsp; -- {{custom.name}}
+            <div ng-repeat="item in custom.list">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x {{item.name}} {{item.price}}
+            </div>
+        </div>
+    </div>
+
+</div>

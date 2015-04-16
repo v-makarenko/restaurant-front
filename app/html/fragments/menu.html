@@ -1,0 +1,17 @@
+<div ng-controller="MenuController">
+    <div ng-class="menuItemSelected==='orders' ? 'menu-item-active' : 'menu-item'">
+        <a ng-href="/#/orders">
+            Заказы
+        </a>
+    </div>
+    <div ng-class="menuItemSelected==='stats' ? 'menu-item-active' : 'menu-item'">
+        <a ng-href="/#/stats">
+        Статистика
+        </a>
+    </div>
+    <div ng-class="menuItemSelected==='menu' ? 'menu-item-active' : 'menu-item'">
+        <a ng-href="/#/menuEdit">
+            Редактировать меню
+        </a>
+    </div>
+</div>

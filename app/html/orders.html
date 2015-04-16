@@ -1,0 +1,19 @@
+<div set-active-tab tab-id="'orders'"></div>
+<div class="order-table">
+    <div class="row order-item" ng-repeat="order in orders">
+        <div class="col-lg-4">
+            {{order.id}}
+        </div>
+        <div class="col-lg-4">
+            <ul>
+                <li ng-repeat="orderItem in order.orders">
+                    {{orderItem.name}}
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-4">
+            {{order.sum}} руб.
+        </div>
+    </div>
+
+</div>
