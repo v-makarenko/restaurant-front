@@ -14,6 +14,18 @@ angular.module('app').controller('OrdersController',
         };
         $scope.loadOrders();
 
+        $scope.openConfirmOrderModal = function (id){
+            $scope.currentOrder = $scope.orders[id];
+            $('#confirm-order-modal').modal('show');
+        };
+
+        $scope.confirmOrder = function(){
+            OrdersService.confirmOrder();
+        };
+
+        $scope.closeOrder = function(id){
+            OrdersService.closeOrder(id);
+        };
 
     });
 

@@ -8,22 +8,12 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="expense-amount">
-                            Цена:
+                            Цена{{}}:
                         </label>
                         <input id="expense-amount" name="expenseAmount" class="form-control" placeholder="Enter amount"
                                ng-required maxlength="19"
                                ng-model="currentPosition.amount">
 
-                        <div class="error-container" ng-show="newExpenseForm.expenseAmount.$dirty">
-                            <small class="text-danger"
-                                   ng-show="newExpenseForm.expenseAmount.$error.required">
-                                Amount is required.
-                            </small>
-                            <small class="text-danger"
-                                   ng-show="newExpenseForm.expenseAmount.$invalid && !newExpenseForm.expenseAmount.$error.required">
-                                Input is incorrect.
-                            </small>
-                        </div>
                     </div>
                     <div class="form-group">
                         <label for="expense-description">

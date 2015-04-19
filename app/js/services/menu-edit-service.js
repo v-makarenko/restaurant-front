@@ -35,17 +35,37 @@ angular.module("app").service('MenuEditService',
             });
             return deferred.promise;
         };
-        this.create = function (position) {
-
+        this.insert = function (position) {
+            var deferred = $q.defer();
+            deferred.resolve({
+                result: 'OK',
+                msg: undefined
+            });
+            return deferred.promise;
         };
         this.update = function (position) {
-
+            var deferred = $q.defer();
+            deferred.resolve({
+                result: 'OK',
+                msg: undefined
+            });
+            return deferred.promise;
         };
         this.delete = function (id) {
-
+            var deferred = $q.defer();
+            deferred.resolve({
+                result: 'OK',
+                msg: undefined
+            });
+            return deferred.promise;
         };
         this.setNewPosition = function (id, afterId) {
-
+            var deferred = $q.defer();
+            deferred.resolve({
+                result: 'OK',
+                msg: undefined
+            });
+            return deferred.promise;
         };
     }
 );
