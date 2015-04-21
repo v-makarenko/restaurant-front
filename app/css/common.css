@@ -16,3 +16,17 @@
 #not-header{
     clear:both;
 }
+
+.dropdown-div .dropdown-ul{
+    display:none;
+    position: fixed;
+}
+.dropdown-div:hover .dropdown-ul{
+    display:block;
+}
+.dropdown-div{
+    height: 100%;
+}
+.my-page-header div div:hover{
+    background-color: rgb(198, 207, 255);
+}

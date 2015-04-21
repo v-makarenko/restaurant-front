@@ -1,21 +1,21 @@
 <header class="my-page-header row" ng-controller='HeaderController'>
-    <div class="col-lg-8">
+    <div class="col-lg-6">
         <h3>Административная панель</h3>
     </div>
-    <div class="col-lg-4">
-        <div class="btn" ng-click="sendReport()">
+    <div class="col-lg-6">
+        <div class="col-lg-3" ng-click="sendReport()">
             Сообщить об ошибке
         </div>
-        <div class="btn">
+        <div class="dropdown-div col-lg-6">
             Уведомления ({{notifTotal}})
-            <ul ng-show="false">
-                <li ng-repeat="notif in notifs">
+            <ul class="dropdown-ul">
+                <li ng-repeat="notif in notifs"  class="dropdown-li">
                     <span  ng-click="openNotif($index)">{{$index}}. {{notif.text}}</span>
                 </li>
             </ul>
 
         </div>
-        <div class="btn" ng-click="exit()">
+        <div class="col-lg-3" ng-click="exit()">
             Выход
         </div>
     </div>

@@ -20,20 +20,34 @@
 <script src="/js/controllers/orders-controller.js"></script>
 <script src="/js/controllers/stats-controller.js"></script>
 <script src="/js/controllers/header-controller.js"></script>
+<script src="/js/controllers/main-controller.js"></script>
+<script src="/js/controllers/sign-up-controller.js"></script>
+<script src="/js/controllers/login-controller.js"></script>
 <script src="/js/directives/set-active-tab.js"></script>
 <title>Restaurant management panel</title>
 
 <body>
-<div ng-app="app">
-    <div id="header">
-        <div ng-include="'./html/fragments/header.html'"></div>
-    </div>
-    <div id="not-header">
-        <div style="width:20%; float:left" class="page-menu" ng-include="'./html/fragments/menu.html'"></div>
-        <!--<div style="width:10%; float:left" ></div>-->
-        <div style="width:70%; float: right;" id="content" class="my-content" ng-view>
+<div ng-app="app" ng-controller="MainController">
+    <div ng-switch="rootScope.isAuthenticated">
+        <div ng-switch-when="true">
+            <div id="header">
+                <div ng-include="'./html/fragments/header.html'"></div>
+            </div>
+            <div id="not-header">
+                <div style="width:20%; float:left" class="page-menu" ng-include="'./html/fragments/menu.html'"></div>
+                <!--<div style="width:10%; float:left" ></div>-->
+                <div style="width:70%; float: right;" id="content" class="my-content" ng-view>
+                </div>
+            </div>
+        </div>
+        <div ng-switch-when="false">
+            <div ng-include="'/html/login.html'"></div>
+        </div>
+        <div ng-switch-default>
+            default
         </div>
     </div>
+
 </div>
 
 </body>

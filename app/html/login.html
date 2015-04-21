@@ -1,0 +1,21 @@
+<div style="margin-top: 10em; text-align: center " class="col-lg-4 col-lg-offset-4">
+    <div>
+        Добро пожаловать в административную панель
+    </div>
+    <form action="login()">
+        <div class="row">
+            <input ng-model="login" class="form-control" placeholder="Имя пользователя"></input>
+        </div>
+        <div class="row">
+            <input ng-model="password" class="form-control" placeholder="Пароль"></input>
+        </div>
+        <div class="row">
+            <input type="submit" class="form-control" value="Вход"></input>
+        </div>
+    </form>
+    <div>
+        <small>
+            Вы можете <a ng-href="#/signUp">зарегистрироваться</a>
+        </small>
+    </div>
+</div>

@@ -14,10 +14,11 @@ angular.module("app").service('MenuEditService',
                     {
                         id: 1,
                         name: 'Китайский бизнес-ланч',
+                        price: 800,
                         customs: [
                             {
                                 name: 'Чай',
-                                list: [
+                                variants: [
                                     {
                                         name: 'Зеленый чай',
                                         price: 50

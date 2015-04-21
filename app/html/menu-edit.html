@@ -6,12 +6,12 @@
 </div>
 <div class="order-table">
     <div ng-repeat='menuItem in menuItems' class="order-item">
-        * {{menuItem.name}}
+        * {{menuItem.name}} : {{menuItem.price}}
         <button ng-click="deleteMenuItem($index)">X</button>
-        <button ng-click="editMenuItem($index)">E</button>
+        <button ng-click="editMenuItem(menuItem.id)">E</button>
         <div ng-repeat="custom in menuItem.customs">
             &nbsp; -- {{custom.name}}
-            <div ng-repeat="item in custom.list">
+            <div ng-repeat="item in custom.variants">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x {{item.name}} {{item.price}}
             </div>
         </div>
@@ -37,7 +37,7 @@
 
                             <input id="menu-item-name" name="menuItemName" class="form-control"
                                    placeholder="Название" required
-                                   ng-model="currenMenuItem.name"/>
+                                   ng-model="currentMenuItem.name"/>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -49,7 +49,7 @@
                         <div class="col-lg-8">
                             <textarea rows="4" id="menu-item-description" name="menuItemDescription" class="form-control"
                                    placeholder="Описание" required
-                                   ng-model="currenMenuItem.description"/>
+                                   ng-model="currentMenuItem.description"/>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -60,7 +60,7 @@
                             </label>
                         </div>
                         <div class="col-lg-8">
-                            <input id="menu-item-price" name="menuItemPrice" class="form-control"
+                            <input id="menu-item-price" name="menuItemPrice" placeholder="Цена" class="form-control"
                                    required
                                    ng-model="currentMenuItem.price"/>
                         </div>
@@ -73,7 +73,7 @@
                     <div ng-repeat='custom in currentMenuItem.customs' class="order-item">
                         <div ng-show="!custom.editing">
                             <div ng-click="custom.editing = true;">
-                                = {{custom.name}} <span ng-show="!custom.vars "> : {{custom.price}}</span>
+                                = {{custom.name}} <span ng-show="!custom.variants "> : {{custom.price}}</span>
                                 <span ng-click="deleteCustomMenuItem($index)">X</span>
                             </div>
                             <div>
@@ -81,15 +81,15 @@
 
                                 <div ng-repeat='variant in custom.variants'>
                                     == <span ng-show="!variant.editing" ng-click="variand.editing = true">{{variant.name}} : {{variant.price}}</span>
-                                    <span ng-show="variant.editing"><input ng-model="variant.name"><input
-                                            ng-model="variant.price"></span> <span class="btn" ng-click="variant.editing = false">OK</span>
+                                    <span ng-show="variant.editing"><input ng-model="variant.name" placeholder="Название"><input
+                                            placeholder="Цена" ng-model="variant.price"></span> <span class="btn" ng-click="variant.editing = false">OK</span>
                                     <span ng-click="deleteCustomMenuItemVariant($parent.$index, $index)">X</span>
                                 </div>
 
                             </div>
                         </div>
                         <div ng-show="custom.editing">
-                            <input ng-model="custom.name"></input> : <input ng-model="custom.price"></input> <span class="btn" ng-click="custom.editing = false">OK</span>
+                            <input ng-model="custom.name" placeholder="Название"></input> : <input placeholder="Цена" ng-model="custom.price"></input> <span class="btn" ng-click="custom.editing = false">OK</span>
 
                         </div>
 
@@ -122,7 +122,7 @@
 
                             <input id="menu-item-name" name="menuItemName" class="form-control"
                                    placeholder="Название" required
-                                   ng-model="currenMenuItem.name"/>
+                                   ng-model="currentMenuItem.name"/>
                         </div>
                     </div>
                     <div class="form-group row" ng-show="currentMenuItem.selection">
