@@ -5,7 +5,7 @@
     <div>
         Добро пожаловать в административную панель
     </div>
-    <form action="login()">
+    <form ng-submit="login()">
         <div class="row">
             <input ng-model="login" class="form-control" placeholder="Имя пользователя"></input>
         </div>
@@ -18,7 +18,7 @@
     </form>
     <div>
         <small>
-            Вы можете <a ng-href="#/signUp">зарегистрироваться</a>
+            Вы можете <a href="#/signUp">зарегистрироваться</a>
         </small>
     </div>
 </div>
