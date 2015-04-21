@@ -4,10 +4,12 @@
 
 
 angular.module('app').controller('MainController',
-    function ($scope, $rootScope) {
+    function ($scope, $rootScope, $location) {
         $scope.rootScope = $rootScope;
-        if($rootScope.isAuthenticated === undefined){
-            $rootScope.isAuthenticated = false;
-        }
+        $rootScope.isAuthenticated = true;
+        //if($rootScope.isAuthenticated === undefined){
+        //    $rootScope.isAuthenticated = false;
+        //}
+        $scope.location = $location;
     });
 

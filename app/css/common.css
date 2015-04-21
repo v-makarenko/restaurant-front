@@ -1,6 +1,8 @@
 .my-page-header{
     height: 50px;
     background-color: rgb(119, 125, 255);
+    color: white;
+    font-family: monospace;
 }
 .page-menu{
     /*width:200px;*/

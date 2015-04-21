@@ -1,26 +1,59 @@
 <div set-active-tab tab-id="'orders'"></div>
 <div class="order-table">
-    <div class="row order-item" ng-repeat="order in orders" style="border-style: solid">
-        <div class="col-lg-2">
-            {{order.id}}
-        </div>
-        <div class="col-lg-2" ng-show="order.status == 'paid'">
-            <button class="btn" ng-click="closeOrder(order.id)">Закрыть заказ</button>
-        </div>
-        <div class="col-lg-2" ng-show="order.status == 'new'">
-            <button class="btn" ng-click="openConfirmOrderModal($index)">Подтвердить заказ</button>
-        </div>
-        <div class="col-lg-4">
-            <ul>
-                <li ng-repeat="orderItem in order.orders">
-                    {{orderItem.name}} x {{orderItem.count}}
-                </li>
-            </ul>
-        </div>
-        <div class="col-lg-4">
-            {{order.sum}} руб.
-        </div>
-    </div>
+    <table class="table table-striped">
+        <thead>
+        <th>
+            №
+        </th>
+        <th>
+            Клиент
+        </th>
+        <th>
+            Состав
+        </th>
+        <th>
+            Время
+        </th>
+        <th>
+            Стоимость
+        </th>
+        <th>
+            Действия
+        </th>
+
+        </thead>
+        <tbody>
+        <tr ng-repeat="order in orders">
+            <td>
+                {{order.id}}
+            </td>
+            <td>
+                {{order.user.name}}
+            </td>
+            <td>
+                <ul>
+                    <li ng-repeat="orderItem in order.orders">
+                        {{orderItem.name}} x {{orderItem.count}}
+                    </li>
+                </ul>
+            </td>
+            <td>
+                {{formatTime(order.bookTime)}}
+            </td>
+            <td>
+                {{order.sum}} руб.
+            </td>
+            <td>
+                <div ng-show="order.status == 'paid'">
+                    <button class="btn" ng-click="closeOrder(order.id)">Закрыть заказ</button>
+                </div>
+                <div ng-show="order.status == 'new'">
+                    <button class="btn" ng-click="openConfirmOrderModal($index)">Подтвердить заказ</button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
 </div>
 
@@ -47,8 +80,8 @@
                         <div class="col-lg-8">
 
                             <textarea rows="4" id="order-comments" name="orderComments" class="form-control"
-                                   placeholder="Комментарий по заказу" maxlength="40"
-                                   ng-model="currentOrder.comments"></textarea>
+                                      placeholder="Комментарий по заказу" maxlength="40"
+                                      ng-model="currentOrder.comments"></textarea>
                         </div>
                     </div>
                 </div>

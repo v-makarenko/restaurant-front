@@ -5,7 +5,7 @@
     <div>
         Добро пожаловать в административную панель
     </div>
-    <form ng-submit="login()">
+    <form >
         <div class="row">
             <input ng-model="login" class="form-control" placeholder="Имя пользователя"></input>
         </div>
@@ -13,7 +13,7 @@
             <input ng-model="password" class="form-control" placeholder="Пароль"></input>
         </div>
         <div class="row">
-            <input type="submit" class="form-control" value="Вход"></input>
+            <input type="button" class="form-control" value="Вход" ng-click="loginF()"></input>
         </div>
     </form>
     <div>

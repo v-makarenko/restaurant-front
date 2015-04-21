@@ -4,8 +4,14 @@
 
 
 angular.module('app').controller('LoginController',
-    function ($scope, $routeParams) {
+    function ($scope, $rootScope, $routeParams, $location) {
 
         $scope.isSuccess = $routeParams['successFlag'] == 'success';
+
+        $scope.loginF = function(){
+            $rootScope.isAuthenticated = true;
+            $location.$path('#/orders');
+        };
+
     });
 

@@ -10,6 +10,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script src="http://underscorejs.org/underscore.js"></script>
+<script src="http://momentjs.com/downloads/moment.js"></script>
 <!-- users js -->
 <script src="/js/app.js"></script>
 <script src="/js/services/orders-service.js"></script>
@@ -41,7 +42,8 @@
             </div>
         </div>
         <div ng-switch-when="false">
-            <div ng-include="'/html/login.html'"></div>
+            <div ng-show="location.path() == '/login'" ng-include="'/html/login.html'" ng-controller="LoginController"></div>
+            <div ng-show="location.path() == '/signUp'" ng-include="'/html/signUp.html'" ng-controller="SignUpController"></div>
         </div>
         <div ng-switch-default>
             default

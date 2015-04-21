@@ -6,7 +6,6 @@
 angular.module('app').controller('OrdersController',
     function ($scope,  OrdersService) {
         $scope.loadOrders = function(){
-            var i = 0;
             OrdersService.getOrders()
                 .then(function(data){
                     $scope.orders = data.data;
@@ -26,6 +25,10 @@ angular.module('app').controller('OrdersController',
         $scope.closeOrder = function(id){
             OrdersService.closeOrder(id);
         };
+
+        $scope.formatTime = function(millis){
+            return moment(millis).format('hh:mm')
+        }
 
     });
 

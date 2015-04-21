@@ -18,7 +18,7 @@ angular.module('app', [
                 templateUrl: 'html/stats.html',
                 controller: 'StatsController'
             }).
-            when('/login/{successFlag}', {
+            when('/login', {
                 templateUrl: 'html/login.html',
                 controller: 'LoginController'
             }).
@@ -28,16 +28,16 @@ angular.module('app', [
             }).
 
             otherwise({
-                redirectTo: '/orders'
+                redirectTo: '/login'
             });
     }]).run(function ($rootScope, $location) {
 
     var callback = function () {
-        if ($location.url() != 'login'
-            && $location.url() != 'signUp'
-            && !$rootScope.authenticated) {
-            $location.path('/login');
-        }
+        //if ($location.url() != 'login'
+        //    && $location.url() != 'signUp'
+        //    && !$rootScope.authenticated) {
+        //    $location.path('/login');
+        //}
     };
 
     $rootScope.$on('$routeChangeStart', function (event, next, current) {

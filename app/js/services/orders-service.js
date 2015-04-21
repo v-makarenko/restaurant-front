@@ -14,7 +14,7 @@ angular.module("app").service('OrdersService',
                             phone: '+7 999 999 99 99'
                         },
                         peopleCount: 4,
-                        bookTime: 1428611546787,
+                        bookTime: 1428621546787,
                         orders: [{
                             id: 1,
                             name: 'Испанский бизнес-ланч',
@@ -32,7 +32,7 @@ angular.module("app").service('OrdersService',
                             phone: '+7 999 999 99 99'
                         },
                         peopleCount: 2,
-                        bookTime: 1428611546787,
+                        bookTime: 1421111111111,
                         orders: [
                             {
                                 id: 2,
