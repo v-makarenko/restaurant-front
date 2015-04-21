@@ -18,7 +18,7 @@ angular.module('app', [
                 templateUrl: 'html/stats.html',
                 controller: 'StatsController'
             }).
-            when('/login', {
+            when('/login/{successFlag}', {
                 templateUrl: 'html/login.html',
                 controller: 'LoginController'
             }).

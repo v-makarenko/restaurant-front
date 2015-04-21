@@ -4,7 +4,7 @@
 
 
 angular.module('app').controller('OrdersController',
-    function ($scope, OrdersService) {
+    function ($scope,  OrdersService) {
         $scope.loadOrders = function(){
             var i = 0;
             OrdersService.getOrders()

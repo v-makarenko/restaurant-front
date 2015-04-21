@@ -4,7 +4,8 @@
 
 
 angular.module('app').controller('LoginController',
-    function ($scope) {
+    function ($scope, $routeParams) {
 
+        $scope.isSuccess = $routeParams['successFlag'] == 'success';
     });
 

@@ -4,7 +4,14 @@
 
 
 angular.module('app').controller('SignUpController',
-    function ($scope) {
+    function ($scope, $location, AuthService) {
+        $scope.newUser = {};
+        $scope.signUp = function(){
+            AuthService.signUp().then(function(){
+                $location.path('#/login/success')
+            })
+
+        }
 
     });
 
