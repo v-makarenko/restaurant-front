@@ -45,6 +45,15 @@ angular.module("app").service('AuthService',
             });
             return deferred.promise;
         };
+
+        this.signUp = function(newUser){
+            var deferred = $q.defer();
+            deferred.resolve({
+                result: 'OK',
+                msg: undefined
+            });
+            return deferred.promise;
+        }
     }
 )
 ;

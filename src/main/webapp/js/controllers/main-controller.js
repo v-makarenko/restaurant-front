@@ -4,12 +4,22 @@
 
 
 angular.module('app').controller('MainController',
-    function ($scope, $rootScope, $location) {
+    function ($scope, $rootScope, $location, AuthService) {
         $scope.rootScope = $rootScope;
         $rootScope.isAuthenticated = true;
         //if($rootScope.isAuthenticated === undefined){
         //    $rootScope.isAuthenticated = false;
         //}
         $scope.location = $location;
+
+
+        // reaction for global events
+        $rootScope.$on('events.exit', function(){
+            AuthService.logout();
+            $rootScope.isAuthenticated = false;
+            $location.path('/login');
+        })
+
+        $rootScope.$on('events.sendReport')
     });
 

@@ -42,8 +42,8 @@
             </div>
         </div>
         <div ng-switch-when="false">
-            <div ng-show="location.path() == '/login'" ng-include="'/html/login.html'" ng-controller="LoginController"></div>
-            <div ng-show="location.path() == '/signUp'" ng-include="'/html/signUp.html'" ng-controller="SignUpController"></div>
+            <div ng-show="location.path().indexOf('/login')==0" ng-include="'/html/login.html'" ng-controller="LoginController"></div>
+            <div ng-show="location.path().indexOf('/signUp')==0" ng-include="'/html/signUp.html'" ng-controller="SignUpController"></div>
         </div>
         <div ng-switch-default>
             default
