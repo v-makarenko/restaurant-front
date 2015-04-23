@@ -18,7 +18,7 @@ angular.module('app').controller('LoginController',
             });
         };
 
-        $scope.$watch('login+password', function(){
+        $scope.$watch('credentials.login+credentials.password', function(){
            $scope.error = undefined;
         });
 
