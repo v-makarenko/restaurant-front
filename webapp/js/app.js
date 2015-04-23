@@ -26,6 +26,10 @@ angular.module('app', [
                 templateUrl: 'html/signUp.html',
                 controller: 'SignUpController'
             }).
+            when('/settings', {
+                templateUrl: 'html/settings.html',
+                controller: 'SettingsController'
+            }).
 
             otherwise({
                 redirectTo: '/login'

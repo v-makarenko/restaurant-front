@@ -3,8 +3,8 @@
  */
 
 
-angular.module('app').controller('MenuController', ['$scope', '$rootScope',
-    function ($scope, $rootScope) {
+angular.module('app').controller('MenuController', ['$scope', '$rootScope', '$location',
+    function ($scope, $rootScope, $location) {
         $rootScope.$on('main.tabSelected', function(event, data){
             $scope.menuItemSelected = data;
         });
@@ -15,5 +15,19 @@ angular.module('app').controller('MenuController', ['$scope', '$rootScope',
 
         // default is orders page
         $scope.menuItemSelected = TAB_ORDERS_ID;
+
+        $scope.location = $location;
+        $scope.gotoLink = function(link){
+            $location.path(link)
+        };
+
+
+        $scope.logout = function(){
+            $rootScope.$broadcast('events.exit');
+        };
+
+        $scope.sendReport = function(){
+            $rootScope.$broadcast('events.sendReport');
+        };
     }]);
 
