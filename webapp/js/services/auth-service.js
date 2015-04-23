@@ -4,18 +4,23 @@
 angular.module("app").service('AuthService',
     function ($http, $q) {
         this.login = function (login, pass) {
-            return $http.post(
-                Consts.url + "j_spring_security_check",
-                {
-                    j_username: login,
-                    j_password: pass,
-                    j_remember: false
+            return $http({
+                    method: 'POST',
+                    url: Consts.url + "j_spring_security_check",
+                    data: $.param(
+                        {
+                            j_username: login,
+                            j_password: pass,
+                            j_remember: false
+                        }
+                    ),
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                 }
-            )
+            );
         };
 
         this.logout = function () {
-            window.authorized = false;
+            return $http.post(Consts.url + "j_spring_security_logout", {});
         };
         this.isAuthorized = function () {
             return window.authorized;
