@@ -33,11 +33,11 @@ angular.module('app', [
     }]).run(function ($rootScope, $location) {
 
     var callback = function () {
-        if ($location.url() != 'login'
-            && $location.url() != 'signUp'
-            && !$rootScope.isAuthenticated) {
-            $location.path('/login');
-        }
+        //if ($location.url() != 'login'
+        //    && $location.url() != 'signUp'
+        //    && !$rootScope.isAuthenticated) {
+        //    $location.path('/login');
+        //}
     };
 
     $rootScope.$on('$routeChangeStart', function (event, next, current) {
