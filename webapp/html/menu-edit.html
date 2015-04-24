@@ -56,20 +56,6 @@
 
 </div>
 
-<div class="order-table">
-    <div ng-repeat='menuItem in menuItems' class="order-item">
-        * {{menuItem.name}} : {{menuItem.price}}
-        <button class="btn btn-sm btn-primary" ng-click="deleteMenuItem($index)">X</button>
-        <button class="btn btn-sm btn-primary" ng-click="editMenuItem(menuItem.id)">E</button>
-        <div ng-repeat="custom in menuItem.customs">
-            &nbsp; -- {{custom.name}}
-            <div ng-repeat="item in custom.variants">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x {{item.name}} {{item.price}}
-            </div>
-        </div>
-    </div>
-
-</div>
 
 <div id='menu-edit-modal' class="modal fade">
     <div class="modal-dialog">
