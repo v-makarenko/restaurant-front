@@ -14,12 +14,17 @@ angular.module('app').controller('MainController',
 
         // reaction for global events
         $rootScope.$on('events.exit', function () {
-            AuthService.logout().success(function () {
+            AuthService.logout().error(function () {
                     $rootScope.isAuthenticated = false;
                     $location.path('/login');
                 }
-            )});
-
-            $rootScope.$on('events.sendReport')
+            )
         });
+
+        $rootScope.$on('events.sendReport');
+
+        $rootScope.isAuthenticated = true;
+
+    }
+);
 

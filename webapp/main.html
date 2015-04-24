@@ -35,10 +35,10 @@
         <div ng-include="'./html/fragments/header.html'"></div>
     </div>
     <div id="not-header">
-        <div style="width:20%; float:left" class="page-menu"
+        <div style="width:20%; float:left; height:1000px" class="page-menu"
              ng-include="'./html/fragments/menu.html'" ng-if="rootScope.isAuthenticated"></div>
         <!--<div style="width:10%; float:left" ></div>-->
-        <div ng-style="rootScope.isAuthenticated ? 'width:70%; float: right;' : ''" id="content" class="my-content" ng-view>
+        <div style="width:80%; float: right;" id="content" class="my-content" ng-view>
         </div>
     </div>
 
