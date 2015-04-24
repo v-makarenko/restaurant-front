@@ -67,6 +67,17 @@ angular.module("app").service('AuthService',
                 msg: undefined
             });
             return deferred.promise;
+        };
+
+        this.getCurrentUser = function(){
+            return $http.post(
+                    Consts.url + 'rest',
+                {
+                    action:'action',
+                    entityType:'currentUser',
+                    method:'get'
+                }
+            );
         }
     }
 )
