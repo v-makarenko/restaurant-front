@@ -10,7 +10,7 @@ angular.module('app').controller('LoginController',
         $scope.credentials = {};
 
         $scope.loginF = function () {
-            AuthService.login($scope.credentials.login, $scope.credentials.password).then(function (response) {
+            AuthService.login($scope.credentials.login, $scope.credentials.password).success(function (response) {
                 var success = response.status == 200 || response.status == 302;
                 if (success) {
                     $rootScope.isAuthenticated = true;

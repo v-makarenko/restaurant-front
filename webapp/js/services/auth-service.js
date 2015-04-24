@@ -3,20 +3,36 @@
  */
 angular.module("app").service('AuthService',
     function ($http, $q) {
-        this.login = function (login, pass) {
-            return $http({
-                    method: 'POST',
-                    url: Consts.url + "j_spring_security_check",
-                    data: $.param(
-                        {
-                            j_username: login,
-                            j_password: pass,
-                            j_remember: false
-                        }
-                    ),
-                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        //this.login = function (login, pass) {
+        //return $http({
+        //        method: 'POST',
+        //        url: Consts.url + "j_spring_security_check",
+        //        data: $.param(
+        //            {
+        //                j_username: login,
+        //                j_password: pass,
+        //                j_remember: false
+        //            }
+        //        ),
+        //        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        //    }
+        //);
+
+        this.login = function (login, password) {
+
+            //var inputText = $("#input_str").val();
+
+
+            return $.post(
+                Consts.url + "j_spring_security_check",
+                /* string like this: "text=me%20man&mail=peace@man.com or an object": */
+                {
+                    j_username: login,
+                    j_password: password,
+                    j_remember: false
                 }
-            );
+            )
+
         };
 
         this.logout = function () {

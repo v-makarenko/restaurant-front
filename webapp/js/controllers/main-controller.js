@@ -23,7 +23,7 @@ angular.module('app').controller('MainController',
 
         $rootScope.$on('events.sendReport');
 
-        $rootScope.isAuthenticated = true;
+        //$rootScope.isAuthenticated = true;
 
     }
 );
