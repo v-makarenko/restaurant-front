@@ -3,56 +3,33 @@
  */
 angular.module("app").service('AuthService',
     function ($http, $q) {
-        this.login = function (login, pass) {
-            var deferred = $q.defer();
-            if (login == 'admin' && pass == 'admin') {
-                deferred.resolve({
-                    result: 'OK',
-                    msg: undefined
-                });
-                window.authorized = true;
-            } else {
-                deferred.resolve({
-                    result: 'ERROR',
-                    msg: 'Неверный логин или пароль!'
-                });
-                window.authorized = false;
-            }
-            return deferred.promise;
+        var url = 'api/auth/';
+        this.login = function (username, password) {
+            return $http.post( url+ 'login',{username: username, password:password}  )
         };
 
         this.logout = function () {
-            window.authorized = false;
+            return $http.post(url + "logout", {});
         };
         this.isAuthorized = function () {
-            return window.authorized;
+            return $http.post(url + "isAuthorized", {});
         };
         this.getRoles = function () {
-            var deferred = $q.defer();
-            deferred.resolve({
-                result: 'OK',
-                msg: undefined,
-                data: [{
-                    id: 1,
-                    role: 'VIEW_ORDERS'
-                }, {
-                    id: 2,
-                    role: 'VIEW_STATS'
-                }, {
-                    id: 3,
-                    role: 'VIEW_MENU_EDIT'
-                },]
-            });
-            return deferred.promise;
         };
 
-        this.signUp = function(newUser){
-            var deferred = $q.defer();
-            deferred.resolve({
-                result: 'OK',
-                msg: undefined
-            });
-            return deferred.promise;
+        this.signUp = function (newUser) {
+            return $http.post(url + 'signUp', newUser);
+        };
+
+        this.getCurrentUser = function () {
+            return $http.post(
+                Consts.url + 'rest',
+                {
+                    action: 'action',
+                    entityType: 'currentUser',
+                    method: 'get'
+                }
+            );
         }
     }
 )

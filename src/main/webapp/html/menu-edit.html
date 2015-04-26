@@ -1,23 +1,64 @@
 <div set-active-tab tab-id="'menu'"></div>
-<div>
-    <button class="btn" ng-click="editMenuItem()">
-        Добавить позицию
-    </button>
-</div>
-<div class="order-table">
-    <div ng-repeat='menuItem in menuItems' class="order-item">
-        * {{menuItem.name}} : {{menuItem.price}}
-        <button ng-click="deleteMenuItem($index)">X</button>
-        <button ng-click="editMenuItem(menuItem.id)">E</button>
-        <div ng-repeat="custom in menuItem.customs">
-            &nbsp; -- {{custom.name}}
-            <div ng-repeat="item in custom.variants">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x {{item.name}} {{item.price}}
-            </div>
-        </div>
+<div class="row">
+    <div class="h2 col-lg-8"> Меню ООО Ромашка
+        <button class="btn btn-sm btn-primary" ng-click="editMenuItem()">
+            [+]
+        </button>
     </div>
+</div>
+
+<div class="order-table panel panel-default">
+    <table class="table table-striped">
+        <thead>
+        <th>
+            №
+        </th>
+        <th>
+            Название
+        </th>
+        <th>
+            Доп. параметры
+        </th>
+        <th>
+            Стоимость
+        </th>
+        <th>
+            Действия
+        </th>
+
+        </thead>
+        <tbody>
+        <tr ng-repeat="menuItem in menuItems">
+            <td>
+                {{$index}}
+            </td>
+            <td>
+                {{menuItem.name}}
+            </td>
+            <td>
+                <ul ng-repeat="custom in menuItem.customs">
+                    {{custom.name}} -- {{custom.price}}
+                    <div ng-show="custom.variants">
+                        <li ng-repeat="item in custom.variants">
+                            {{item.name}} -- {{item.price}}
+                        </li>
+                    </div>
+                </ul>
+
+            </td>
+            <td>
+                {{menuItem.price}} руб.
+            </td>
+            <td>
+                <button class="btn btn-sm btn-primary" ng-click="editMenuItem($index)">E</button>
+                <button class="btn btn-sm btn-primary" ng-click="deleteMenuItem($index)">X</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
 </div>
+
 
 <div id='menu-edit-modal' class="modal fade">
     <div class="modal-dialog">
@@ -47,9 +88,10 @@
                             </label>
                         </div>
                         <div class="col-lg-8">
-                            <textarea rows="4" id="menu-item-description" name="menuItemDescription" class="form-control"
-                                   placeholder="Описание" required
-                                   ng-model="currentMenuItem.description"/>
+                            <textarea rows="4" id="menu-item-description" name="menuItemDescription"
+                                      class="form-control"
+                                      placeholder="Описание" required
+                                      ng-model="currentMenuItem.description"/>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -66,95 +108,113 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        {{currentMenuItem.customs ? 'Дополнения: ':'Дополнений
-                        нет:'}}
-                        <span class="btn" ng-click="addCustomMenuItem()">Добавить +</span>
-                    </div>
-                    <div ng-repeat='custom in currentMenuItem.customs' class="order-item">
-                        <div ng-show="!custom.editing">
-                            <div ng-click="custom.editing = true;">
-                                = {{custom.name}} <span ng-show="!custom.variants "> : {{custom.price}}</span>
-                                <span ng-click="deleteCustomMenuItem($index)">X</span>
-                            </div>
-                            <div>
-                                <span class="btn" ng-click="addCustomMenuItemVariant($index)">Добавить варианты</span>
-
-                                <div ng-repeat='variant in custom.variants'>
-                                    == <span ng-show="!variant.editing" ng-click="variand.editing = true">{{variant.name}} : {{variant.price}}</span>
-                                    <span ng-show="variant.editing"><input ng-model="variant.name" placeholder="Название"><input
-                                            placeholder="Цена" ng-model="variant.price"></span> <span class="btn" ng-click="variant.editing = false">OK</span>
-                                    <span ng-click="deleteCustomMenuItemVariant($parent.$index, $index)">X</span>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div ng-show="custom.editing">
-                            <input ng-model="custom.name" placeholder="Название"></input> : <input placeholder="Цена" ng-model="custom.price"></input> <span class="btn" ng-click="custom.editing = false">OK</span>
-
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn" data-dismiss="modal">Подтвердить
-                        </button>
-                        <button type="button" class="btn" data-dismiss="modal">Отменить</button>
-                    </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<div id='menu-edit-custom-modal' class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form class="form" name="menuEditModal" ng-submit="submitMenuEdit()">
-                <div class="modal-header">
-                    <h3>Изменение пункта меню</h3>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group row">
                         <div class="col-lg-4">
-                            <label for="menu-item-name">
-                                Название:
+                            <label for="menu-item-price">
+                                {{currentMenuItem.customs ? 'Дополнения: ':'Дополнений
+                                нет:'}}
                             </label>
-                        </div>
-                        <div class="col-lg-8">
-
-                            <input id="menu-item-name" name="menuItemName" class="form-control"
-                                   placeholder="Название" required
-                                   ng-model="currentMenuItem.name"/>
+                            <span class="btn btn-sm btn-primary" ng-click="addCustomMenuItem()">+</span>
                         </div>
                     </div>
-                    <div class="form-group row" ng-show="currentMenuItem.selection">
 
+
+                    <table width="100%" class="table table-striped">
+                        <thead>
+                        <th>
+                            Название
+                        </th>
+                        <th>
+                            Цена
+                        </th>
+                        <th>
+                            &nbsp;&nbsp;&nbsp;
+                        </th>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat='custom in currentMenuItem.customs'>
+                            <td ng-show="!custom.editing" ng-click="custom.editing = true;">
+                                {{custom.name}}
+                            </td>
+                            <td ng-show="!custom.editing" ng-click="custom.editing = true;">
+                                {{custom.price}}
+                            </td>
+                            <td ng-show="custom.editing">
+                                <input class="form-control" ng-model="custom.name"/>
+                            </td>
+                            <td ng-show="custom.editing">
+                                <input class="form-control" ng-model="custom.price"/>
+                            </td>
+                            <td>
+                                <button type="button" ng-show="custom.editing" ng-click="custom.editing = false"
+                                        class="btn btn-sm btn-primary" ng-click="custom.editing=false;">OK
+                                </button>
+                                <button type="button" ng-show="!custom.editing" ng-click="custom.editing = false"
+                                        class="btn btn-sm btn-primary" ng-click="editCustomMenuItem($index)">E
+                                </button>
+                                <button type="button" ng-show="!custom.editing" ng-click="custom.editing = false"
+                                        class="btn btn-sm btn-primary" ng-click="deleteCustomMenuItem($index)">D
+                                </button>
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <div ng-repeat="custom in currentMenuItem.customs">
+                        <div>
+                            <label>
+                                Варианты на выбор для "{{custom.name}}"
+                            </label>
+                            <button type="button"
+                                    class="btn btn-sm btn-primary" ng-click="addCustomMenuItemVariant($index)">
+                                +
+                            </button>
+                        </div>
+                        <div ng-show="!custom.variants">
+                            Отсутствуют
+                        </div>
+                        <div ng-show="custom.variants">
+                            <table width="100%" class="table table-striped">
+                                <thead>
+                                <th>Название</th>
+                                <th>Цена</th>
+                                <th>&nbsp;&nbsp;&nbsp;</th>
+                                </thead>
+                                <tbody>
+                                <tr ng-show="variant in custom.variants">
+                                    <td ng-show="!variant.editing" ng-click="variant.editing = true;">
+                                        {{variant.name}}
+                                    </td>
+                                    <td ng-show="!variant.editing" ng-click="variant.editing = true;">
+                                        {{variant.price}} руб.
+                                    </td>
+
+                                    <td ng-show="variant.editing">
+                                        <input class="form-control" ng-model="variant.name"/>
+                                    </td>
+                                    <td ng-show="variant.editing">
+                                        <input class="form-control" ng-model="variant.price"/>
+                                    </td>
+                                    <td ng-show="variant.editing">
+                                        <button type="button" class="btn btn-sm btn-primary"
+                                                ng-click="variant.editing = false;">
+                                            OK
+                                        </button>
+                                    </td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
                     </div>
 
-                    <div class="form-group row">
-                        <div class="col-lg-4">
-                            {{currentMenuItem.customs && currentMenuItem.customs.length > 0 ? 'Дополнения: ':'Дополнений
-                            нет:'}}
-                        </div>
-                        <div class="col-lg-8">
-                            <span class="btn" ng-click="addCustomMenuItem()">Добавить +</span>
-                        </div>
-                    </div>
-                    <div ng-repeat='custom in currentMenuItem.customs' class="order-item">
-                        <div ng-show="!custom.editing">
-                            {{custom.name}} : {{custom.price}}
-                        </div>
-                        <div ng-show="custom.editing">
-                            <input ng-model="custom.name"/> : <input ng-model="custom.price"/>
-                        </div>
-
-                        <button ng-click="deleteCustomMenuItem($index)">X</button>
-                    </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn" data-dismiss="modal">Подтвердить
+                    <button type="submit" class="btn btn-sm" data-dismiss="modal">Подтвердить
                     </button>
-                    <button type="button" class="btn" data-dismiss="modal">Отменить</button>
+                    <button type="button" class="btn btn-sm" data-dismiss="modal">Отменить</button>
                 </div>
             </form>
         </div>

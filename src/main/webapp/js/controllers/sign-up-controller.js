@@ -5,11 +5,13 @@
 
 angular.module('app').controller('SignUpController',
     function ($scope, $location, AuthService) {
+        $scope.i = 1;
         $scope.newUser = {};
-        $scope.signUp = function(){
-            AuthService.signUp($scope.newUser).then(function(){
-                $location.path('#/login/success')
-            });
+        $scope.signUp = function () {
+            AuthService.signUp($scope.newUser)
+                .success(function () {
+                    $location.path('#/login/success')
+                });
         }
 
     });

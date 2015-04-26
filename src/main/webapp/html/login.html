@@ -7,15 +7,19 @@
     </div>
     <form >
         <div class="row">
-            <input ng-model="login" class="form-control" placeholder="Имя пользователя"></input>
+            <input ng-model="credentials.login" class="form-control" placeholder="Имя пользователя"></input>
         </div>
         <div class="row">
-            <input ng-model="password" class="form-control" placeholder="Пароль"></input>
+            <input ng-model="credentials.password" class="form-control" placeholder="Пароль"></input>
         </div>
         <div class="row">
             <input type="button" class="form-control" value="Вход" ng-click="loginF()"></input>
         </div>
+        <div ng-show="error" class="text-danger">
+            {{error}}
+        </div>
     </form>
+    {{loginF}}
     <div>
         <small>
             Вы можете <a href="#/signUp">зарегистрироваться</a>

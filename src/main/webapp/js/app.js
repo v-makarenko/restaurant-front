@@ -6,15 +6,15 @@ angular.module('app', [
     'ngRoute']).config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider.
-            when('/orders', {
+            when('/app/orders', {
                 templateUrl: 'html/orders.html',
                 controller: 'OrdersController'
             }).
-            when('/menuEdit', {
+            when('/app/menuEdit', {
                 templateUrl: 'html/menu-edit.html',
                 controller: 'MenuEditController'
             }).
-            when('/stats', {
+            when('/app/stats', {
                 templateUrl: 'html/stats.html',
                 controller: 'StatsController'
             }).
@@ -22,9 +22,13 @@ angular.module('app', [
                 templateUrl: 'html/login.html',
                 controller: 'LoginController'
             }).
-            when('/signUp', {
+            when('/app/signUp', {
                 templateUrl: 'html/signUp.html',
                 controller: 'SignUpController'
+            }).
+            when('/app/settings', {
+                templateUrl: 'html/settings.html',
+                controller: 'SettingsController'
             }).
 
             otherwise({
@@ -35,7 +39,7 @@ angular.module('app', [
     var callback = function () {
         //if ($location.url() != 'login'
         //    && $location.url() != 'signUp'
-        //    && !$rootScope.authenticated) {
+        //    && !$rootScope.isAuthenticated) {
         //    $location.path('/login');
         //}
     };

@@ -7,6 +7,8 @@ angular.module('app').controller('HeaderController',
     function ($scope, $rootScope) {
         $scope.notifTotal = 3;
 
+
+
         $scope.notifs = [
             {text:'Новый заказ 4 человека'},
             {text:'Новый заказ 2 человека'},
@@ -21,5 +23,6 @@ angular.module('app').controller('HeaderController',
             $rootScope.$broadcast('events.sendReport');
         };
 
+        $scope.restaurantName = "ООО РОМАШКА";//window.currentUser.name;
     });
 

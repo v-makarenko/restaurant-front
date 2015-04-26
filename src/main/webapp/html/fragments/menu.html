@@ -1,17 +1,38 @@
 <div ng-controller="MenuController">
-    <div ng-class="menuItemSelected==='orders' ? 'menu-item-active' : 'menu-item'">
-        <a ng-href="/#/orders">
+    <div ng-class="menuItemSelected==='orders' ? 'menu-item-active' : 'menu-item'"
+         ng-click="gotoLink('/orders')">
+        <span>
             Заказы
-        </a>
+        </span>
     </div>
-    <div ng-class="menuItemSelected==='stats' ? 'menu-item-active' : 'menu-item'">
-        <a ng-href="/#/stats">
+    <div ng-class="menuItemSelected==='stats' ? 'menu-item-active' : 'menu-item'"
+         ng-click="gotoLink('/stats')">
+        <span>
         Статистика
-        </a>
+        </span>
     </div>
-    <div ng-class="menuItemSelected==='menu' ? 'menu-item-active' : 'menu-item'">
-        <a ng-href="/#/menuEdit">
+    <div ng-class="menuItemSelected==='menu' ? 'menu-item-active' : 'menu-item'"
+         ng-click="gotoLink('/menuEdit')">
+        <span>
             Редактировать меню
-        </a>
+        </span>
+    </div>
+    <div ng-class="menuItemSelected==='settings' ? 'menu-item-active' : 'menu-item'"
+         ng-click="gotoLink('/settings')">
+        <span>
+            Настройки
+        </span>
+    </div>
+    <div class="menu-item"
+         ng-click="sendReport()">
+        <span>
+            Отчет об ошибке
+        </span>
+    </div>
+    <div class="menu-item"
+         ng-click="logout()">
+        <span>
+            Выход
+        </span>
     </div>
 </div>

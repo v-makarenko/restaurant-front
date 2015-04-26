@@ -1,0 +1,64 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet id="init structure #1" author="vmakarenko">
+        <sql>
+           CREATE TABLE users (
+                id uuid PRIMARY KEY,
+                name text,
+                surname text,
+                email text NOT NULL,
+                phone text NOT NULL,
+                password text NOT NULL,
+                user_category text NOT NULL
+            );
+
+            CREATE TABLE menu_items (
+            user_id uuid REFERENCES users(id),
+            id uuid PRIMARY KEY,
+            name text,
+            price numeric(17,2)
+            );
+
+            CREATE TABLE menu_customs (
+            id uuid PRIMARY KEY,
+            name text,
+            price numeric(17,2),
+            menu_item_id uuid REFERENCES menu_items(id)
+            );
+
+            CREATE TABLE menu_variants(
+            id uuid PRIMARY KEY,
+            name text,
+            price numeric(17,2),
+            menu_custom_id uuid REFERENCES menu_customs(id)
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="init structure #2" author="vmakarenko">
+    <sql>
+        ALTER TABLE users ADD COLUMN contact_name text;
+    </sql>
+    </changeSet>
+    <changeSet id="init structure #3" author="vmakarenko">
+        <sql>
+            ALTER TABLE users ADD COLUMN username text NOT NULL;
+        </sql>
+    </changeSet>
+    <changeSet id="init structure #4" author="vmakarenko">
+        <sql>
+            CREATE TABLE groups(
+            id uuid PRIMARY KEY,
+            group_name text NOT NULL
+            );
+            CREATE TABLE groups_users(
+            id uuid PRIMARY KEY,
+            group_id uuid REFERENCES groups(id),
+            user_id uuid REFERENCES users(id)
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>
