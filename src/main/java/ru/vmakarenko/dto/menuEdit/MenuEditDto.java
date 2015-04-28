@@ -1,6 +1,6 @@
 package ru.vmakarenko.dto.menuEdit;
 
-import ru.vmakarenko.dto.CommonDto;
+import ru.vmakarenko.dto.common.CommonDto;
 
 import java.math.BigDecimal;
 import java.util.List;

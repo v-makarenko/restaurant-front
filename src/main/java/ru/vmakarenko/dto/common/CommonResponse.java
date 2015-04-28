@@ -1,14 +1,12 @@
-package ru.vmakarenko.dto;
-
-import java.util.List;
+package ru.vmakarenko.dto.common;
 
 /**
  * Created by vmakarenko on 22.04.2015.
  */
-public class CommonResponse{
+public class CommonResponse {
     private String result;
     private String msg;
-    private List<CommonDto> data;
+    private Object data;
 
 
     public CommonResponse(String result) {
@@ -36,11 +34,15 @@ public class CommonResponse{
         this.msg = msg;
     }
 
-    public List<CommonDto> getData() {
+    public Object getData() {
         return data;
     }
 
-    public void setData(List<CommonDto> data) {
+    public void setData(Object data) {
         this.data = data;
+    }
+    public CommonResponse data(Object data) {
+        this.data = data;
+        return this;
     }
 }

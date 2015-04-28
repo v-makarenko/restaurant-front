@@ -6,9 +6,6 @@
 angular.module('app').controller('MainController',
     function ($scope, $rootScope, $location, AuthService) {
         $scope.rootScope = $rootScope;
-        if ($rootScope.isAuthenticated === undefined) {
-            $rootScope.isAuthenticated = false;
-        }
         $scope.location = $location;
 
 
@@ -22,6 +19,7 @@ angular.module('app').controller('MainController',
         });
 
         $rootScope.$on('events.sendReport');
+
 
         //$rootScope.isAuthenticated = true;
 

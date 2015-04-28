@@ -1,27 +1,31 @@
 package ru.vmakarenko.rest;
 
 
-import ru.vmakarenko.dto.CommonResponse;
+import ru.vmakarenko.dto.common.CommonListResponse;
+import ru.vmakarenko.dto.common.CommonResponse;
 import ru.vmakarenko.dto.users.AccessAuthDto;
+import ru.vmakarenko.dto.common.BooleanDto;
 import ru.vmakarenko.dto.users.UserAuthDto;
+import ru.vmakarenko.dto.users.UserDto;
 import ru.vmakarenko.dto.users.UserSignUpDto;
 import ru.vmakarenko.services.AuthService;
 import ru.vmakarenko.services.UserService;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+import javax.servlet.http.HttpSession;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
+import java.util.Calendar;
 
 /**
  * Created by vmakarenko on 22.04.2015.
  */
 @Path("auth")
 @Consumes("application/json")
+@Produces("application/json")
 public class AuthResource {
     @Inject
     UserService userService;
@@ -36,7 +40,14 @@ public class AuthResource {
         if (responseDto != null) {
             request.getSession().setAttribute(AccessAuthDto.PARAM_AUTH_ID, responseDto.getId());
             request.getSession().setAttribute(AccessAuthDto.PARAM_AUTH_TOKEN, responseDto.getToken());
-            return Response.ok(responseDto).build();
+            Calendar c = Calendar.getInstance();
+            c.add(Calendar.HOUR, 1);
+            NewCookie cookie1 = new NewCookie(AccessAuthDto.PARAM_AUTH_ID, responseDto.getToken());
+            NewCookie cookie2 = new NewCookie(AccessAuthDto.PARAM_AUTH_TOKEN, responseDto.getId());
+            return Response
+                    .ok(responseDto)
+                    .cookie(new NewCookie[]{new NewCookie("token", responseDto.getToken()), new NewCookie("id", responseDto.getId())})
+                    .build();
         }else{
             return Response.status(Response.Status.FORBIDDEN).build();
         }
@@ -44,14 +55,17 @@ public class AuthResource {
 
     @POST
     @Path("logout")
-    public Response logout() {
+    public Response logout(@Context HttpServletRequest request) {
+        request.getSession().removeAttribute(AccessAuthDto.PARAM_AUTH_ID);
+        request.getSession().removeAttribute(AccessAuthDto.PARAM_AUTH_TOKEN);
         return Response.ok().build();
     }
 
     @GET
     @Path("isAuthenticated")
-    public Response isAuthenticated() {
-        return Response.ok().build();
+    public Response isAuthenticated(@Context HttpServletRequest request) {
+        return Response.ok(request.getSession().getAttribute(AccessAuthDto.PARAM_AUTH_ID) != null
+                && request.getSession().getAttribute(AccessAuthDto.PARAM_AUTH_TOKEN) != null).build();
     }
 
     @GET
@@ -61,8 +75,10 @@ public class AuthResource {
     }
 
     @GET
-    @Path("currentRestaurant")
-    public Response getCurrentRestaurant(){
+    @Path("currentUser")
+    public Response getCurrentUser(@Context HttpServletRequest request){
+        CommonResponse response = new CommonResponse("OK");
+        response.setData(userService.findByUsername((String)request.getSession().getAttribute(AccessAuthDto.PARAM_AUTH_ID)));
         return Response.ok().build();
     }
 
@@ -70,7 +86,7 @@ public class AuthResource {
     @Path("signUp")
     public Response signUp(UserSignUpDto dto){
         userService.create(dto);
-        return Response.ok(new CommonResponse("OK")).build();
+        return Response.ok(new CommonListResponse("OK")).build();
     }
 
 }

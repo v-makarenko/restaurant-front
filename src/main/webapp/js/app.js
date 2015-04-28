@@ -6,15 +6,15 @@ angular.module('app', [
     'ngRoute']).config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider.
-            when('/app/orders', {
+            when('/orders', {
                 templateUrl: 'html/orders.html',
                 controller: 'OrdersController'
             }).
-            when('/app/menuEdit', {
+            when('/menuEdit', {
                 templateUrl: 'html/menu-edit.html',
                 controller: 'MenuEditController'
             }).
-            when('/app/stats', {
+            when('/stats', {
                 templateUrl: 'html/stats.html',
                 controller: 'StatsController'
             }).
@@ -22,11 +22,11 @@ angular.module('app', [
                 templateUrl: 'html/login.html',
                 controller: 'LoginController'
             }).
-            when('/app/signUp', {
+            when('/signUp', {
                 templateUrl: 'html/signUp.html',
                 controller: 'SignUpController'
             }).
-            when('/app/settings', {
+            when('/settings', {
                 templateUrl: 'html/settings.html',
                 controller: 'SettingsController'
             }).
@@ -34,20 +34,24 @@ angular.module('app', [
             otherwise({
                 redirectTo: '/login'
             });
-    }]).run(function ($rootScope, $location) {
+    }]).run(function ($rootScope, AuthService) {
+    AuthService.isAuthenticated().success(function (data) {
+        $rootScope.isAuthenticated = data;
+        callback();
+    });
+
 
     var callback = function () {
-        //if ($location.url() != 'login'
-        //    && $location.url() != 'signUp'
-        //    && !$rootScope.isAuthenticated) {
-        //    $location.path('/login');
-        //}
+        if ($location.url() != 'login'
+            && $location.url() != 'signUp'
+            && !$rootScope.isAuthenticated) {
+            $location.path('/login');
+        }
     };
 
     $rootScope.$on('$routeChangeStart', function (event, next, current) {
         callback();
     });
 
-    callback();
 
 });

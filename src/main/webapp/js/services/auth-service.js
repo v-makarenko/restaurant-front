@@ -3,31 +3,55 @@
  */
 angular.module("app").service('AuthService',
     function ($http, $q) {
-        var url = 'api/auth/';
+        var url = "api/auth/";
+
         this.login = function (username, password) {
-            return $http.post( url+ 'login',{username: username, password:password}  )
+
+            return $http.post(url + "login",
+                {
+                    username: username,
+                    password: password
+                }
+            )
+
         };
 
         this.logout = function () {
             return $http.post(url + "logout", {});
         };
-        this.isAuthorized = function () {
-            return $http.post(url + "isAuthorized", {});
+        this.isAuthenticated = function () {
+            return $http.get(url + "isAuthenticated", {});
         };
         this.getRoles = function () {
+            var deferred = $q.defer();
+            deferred.resolve({
+                result: 'OK',
+                msg: undefined,
+                data: [{
+                    id: 1,
+                    role: 'VIEW_ORDERS'
+                }, {
+                    id: 2,
+                    role: 'VIEW_STATS'
+                }, {
+                    id: 3,
+                    role: 'VIEW_MENU_EDIT'
+                },]
+            });
+            return deferred.promise;
         };
 
         this.signUp = function (newUser) {
-            return $http.post(url + 'signUp', newUser);
+            $http.post(url + 'signUp', newUser)
         };
 
-        this.getCurrentUser = function () {
+        this.getCurrentUser = function(){
             return $http.post(
-                Consts.url + 'rest',
+                    Consts.url + 'rest',
                 {
-                    action: 'action',
-                    entityType: 'currentUser',
-                    method: 'get'
+                    action:'action',
+                    entityType:'currentUser',
+                    method:'get'
                 }
             );
         }

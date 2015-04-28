@@ -15,8 +15,8 @@ angular.module('app').controller('LoginController',
                 $location.path('/orders');
             }).error(function(){
                     $scope.error = 'Неверный логин или пароль';
-
-            });
+                }
+            );
         };
 
         $scope.$watch('credentials.login+credentials.password', function () {

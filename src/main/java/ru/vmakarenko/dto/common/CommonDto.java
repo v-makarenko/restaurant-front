@@ -1,9 +1,9 @@
-package ru.vmakarenko.dto;
+package ru.vmakarenko.dto.common;
 
 /**
  * Created by VMakarenko on 4/25/2015.
  */
-public class CommonDto {
+public class CommonDto extends AbstractDto{
     private Long id;
 
     public Long getId() {

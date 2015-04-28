@@ -1,10 +1,15 @@
 package ru.vmakarenko.rest;
 
-import ru.vmakarenko.dto.CommonResponse;
+import ru.vmakarenko.dto.common.CommonListResponse;
+import ru.vmakarenko.dto.common.CommonResponse;
 import ru.vmakarenko.dto.menuEdit.CustomDto;
 import ru.vmakarenko.dto.menuEdit.MenuEditDto;
 import ru.vmakarenko.dto.menuEdit.VariantDto;
+import ru.vmakarenko.filters.MenuFilter;
+import ru.vmakarenko.services.MenuService;
 
+import javax.inject.Inject;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 import java.math.BigDecimal;
@@ -15,37 +20,20 @@ import java.util.ArrayList;
  */
 @Path("menuEdit")
 public class MenuEditResource {
-    @Path("menuEdit")
-    public Response getAll(){
-        CommonResponse response = new CommonResponse("OK");
-        response.setResult("OK");
-        response.setData(new ArrayList<>());
-        MenuEditDto menuEditDto1 = new MenuEditDto();
-        MenuEditDto menuEditDto2 = new MenuEditDto();
-        menuEditDto1.setName("Китайский бизнес-ланч");
-        menuEditDto1.setPrice(new BigDecimal("1000"));
-        menuEditDto2.setName("Итальянский бизнес-ланч");
-        menuEditDto2.setPrice(new BigDecimal("800"));
-        menuEditDto2.setCustoms(new ArrayList<>());
-        CustomDto customDto = new CustomDto();
-        customDto.setName("Чай");
-        customDto.setVariants(new ArrayList<>());
-        VariantDto variantDto1 = new VariantDto();
-        variantDto1.setName("Зеленый чай");
-        variantDto1.setPrice(new BigDecimal(50));
-        VariantDto variantDto2 = new VariantDto();
-        variantDto2.setName("Черный чай");
-        variantDto2.setPrice(new BigDecimal(50));
-        customDto.getVariants().add(variantDto1);
-        customDto.getVariants().add(variantDto2);
+    @Inject
+    MenuService menuService;
 
-        menuEditDto2.getCustoms().add(customDto);
+    @Path("getAll")
+    @POST
+    public Response getAll(MenuFilter filter){
+        return Response.ok(new CommonResponse("OK").data(menuService.getAll(filter))).build();
+    }
 
-
-        response.getData().add(menuEditDto1);
-        response.getData().add(menuEditDto2);
-
-
+    @POST
+    public Response insert(MenuEditDto menuEditDto){
+        menuService.insert(menuEditDto);
         return Response.ok().build();
     }
+
 }
+
