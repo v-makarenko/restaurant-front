@@ -12,6 +12,7 @@ import ru.vmakarenko.filters.OrderFilter;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -27,17 +28,33 @@ public class MenuService {
 
     public List<MenuEditDto> getAll(MenuFilter filter){
         return menuDao.findAll(new CommonFilter(filter))
-                .parallelStream()
+                .stream()
                 .map(d -> mapperService.map(d, MenuEditDto.class))
                 .collect(Collectors.toList());
     }
 
     public void insert(MenuEditDto menuEditDto) {
-        menuDao.insert(mapperService.map(menuEditDto, MenuItem.class));
+        menuDao.insert(fillMenuItem(mapperService.map(menuEditDto, MenuItem.class)));
     }
 
 
     public void update(MenuEditDto menuEditDto) {
-        menuDao.update(mapperService.map(menuEditDto, MenuItem.class));
+        menuDao.update(fillMenuItem(mapperService.map(menuEditDto, MenuItem.class)));
+    }
+
+    public void delete(UUID id){
+        menuDao.trueDelete(id);
+    }
+
+    private MenuItem fillMenuItem(MenuItem menuItem){
+        if(menuItem.getCustoms() != null){
+            menuItem.getCustoms().stream().forEach(c -> {
+                c.setMenuItem(menuItem);
+                if(c.getVariants() != null){
+                    c.getVariants().stream().forEach(v -> v.setCustomEntry(c));
+                }
+            });
+        }
+        return menuItem;
     }
 }

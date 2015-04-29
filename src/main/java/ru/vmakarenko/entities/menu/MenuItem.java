@@ -3,10 +3,7 @@ package ru.vmakarenko.entities.menu;
 import ru.vmakarenko.dto.menuEdit.CustomDto;
 import ru.vmakarenko.entities.DomainEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -20,8 +17,10 @@ public class MenuItem extends DomainEntity {
     private String name;
     @Column(name = "price")
     private BigDecimal price;
-    @OneToMany(mappedBy = "menuItem")
+    @OneToMany(mappedBy = "menuItem", cascade = CascadeType.ALL)
     private List<CustomEntry> customs;
+    @Column(name="description")
+    private String description;
 
     public String getName() {
         return name;
@@ -45,5 +44,13 @@ public class MenuItem extends DomainEntity {
 
     public void setCustoms(List<CustomEntry> customs) {
         this.customs = customs;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -34,7 +34,7 @@ angular.module('app', [
             otherwise({
                 redirectTo: '/login'
             });
-    }]).run(function ($rootScope, AuthService) {
+    }]).run(function ($rootScope, AuthService, $location) {
     AuthService.isAuthenticated().success(function (data) {
         $rootScope.isAuthenticated = data;
         callback();
@@ -42,6 +42,7 @@ angular.module('app', [
 
 
     var callback = function () {
+        if($rootScope.isAuthenticated === undefined) return;
         if ($location.url() != 'login'
             && $location.url() != 'signUp'
             && !$rootScope.isAuthenticated) {

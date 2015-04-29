@@ -7,45 +7,7 @@ angular.module('app').controller('MenuEditController', ['$scope', '$rootScope', 
     function ($scope, $rootScope, MenuEditService) {
         $rootScope.$broadcast('main.tabSelected', 'menu');
 
-        $scope.openEditModal = function (id) {
-            if (id === undefined) {
-                $scope.currentPosition = {}
-            } else {
-
-            }
-            $('menu-edit-modal').show();
-        };
-
-        $scope.saveItem = function () {
-            if ($scope.currentPosition.editing) {
-                MenuEditService.create($scope.currentPosition);
-            } else {
-                MenuEditService.update($scope.currentPosition);
-            }
-        };
-
-        $scope.deleteItem = function (id) {
-            MenuEditService.delete(id);
-        };
-
-        $scope.setNewPosition = function (id, afterId) {
-            MenuEditService.setAfter(id, afterId);
-        };
-
-        $scope.getAll = function () {
-            var filter = {};
-            //filter.companyId = window.userData.companyId;
-            MenuEditService.getAll(filter).then(function (data) {
-                $scope.menuItems = data.data;
-            });
-        };
-
-        $scope.getAll();
-
         // working with menu items
-        $scope.deleteMenuItem = function (index) {
-            MenuEditService.delete(index);
-        };
 
         $scope.editMenuItem = function (index) {
             if (index === undefined) {
@@ -58,6 +20,47 @@ angular.module('app').controller('MenuEditController', ['$scope', '$rootScope', 
             }
             $('#menu-edit-modal').modal('show');
         };
+
+
+
+        $scope.saveItem = function () {
+            if (!$scope.currentMenuItem.editMode) {
+                MenuEditService.insert($scope.currentMenuItem).success(function(){
+                    $scope.getAll();
+                });
+            } else {
+                MenuEditService.update($scope.currentMenuItem).success(function(){
+                    $scope.getAll();
+                });
+            }
+        };
+
+        $scope.deleteMenuItem = function (index) {
+            MenuEditService.delete($scope.menuItems[index].id).success(function(){
+                $scope.getAll();
+            });
+        };
+
+
+
+        $scope.deleteItem = function (id) {
+            MenuEditService.delete(id);
+        };
+
+        $scope.setNewPosition = function (id, afterId) {
+            MenuEditService.setAfter(id, afterId);
+        };
+
+        $scope.getAll = function () {
+            var filter = {};
+            //filter.companyId = window.userData.companyId;
+            MenuEditService.getAll(filter).success(function (data) {
+                $scope.menuItems = data.data;
+            });
+        };
+
+        $scope.getAll();
+
 
         $scope.submitMenuEdit = function () {
             if ($scope.currentMenuItem.editMode) {

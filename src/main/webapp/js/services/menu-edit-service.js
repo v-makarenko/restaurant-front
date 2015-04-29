@@ -1,8 +1,8 @@
 angular.module("app").service('MenuEditService',
     function ($http, $q) {
-        var url = '/api/private/menu/';
+        var url = '/api/private/menuEdit';
         this.getAll = function (filter) {
-            return $http.post(url+'getAll',{});
+            return $http.post(url+'/getAll',{});
         };
         this.insert = function (position) {
             return $http.post(url,position);

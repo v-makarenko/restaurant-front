@@ -61,4 +61,15 @@
             );
         </sql>
     </changeSet>
+    <changeSet id="init structure #5" author="vmakarenko">
+        <sql>
+            ALTER TABLE menu_items ADD COLUMN description text;
+        </sql>
+    </changeSet>
+    <changeSet id="init structure #7" author="vmakarenko">
+        <sql>
+            ALTER TABLE menu_customs ALTER COLUMN menu_item_id SET NOT NULL;
+            ALTER TABLE menu_variants ALTER COLUMN menu_custom_id SET NOT NULL;
+        </sql>
+    </changeSet>
 </databaseChangeLog>

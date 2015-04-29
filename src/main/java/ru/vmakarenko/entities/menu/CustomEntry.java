@@ -17,7 +17,7 @@ public class CustomEntry extends DomainEntity {
     private String name;
     @Column(name="price")
     private BigDecimal price;
-    @OneToMany(mappedBy="customEntry")
+    @OneToMany(mappedBy="customEntry", cascade = CascadeType.ALL)
     private List<VariantEntry> variants;
     @ManyToOne
     @JoinColumn(name = "menu_item_id")

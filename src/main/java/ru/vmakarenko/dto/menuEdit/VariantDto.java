@@ -1,5 +1,6 @@
 package ru.vmakarenko.dto.menuEdit;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import ru.vmakarenko.dto.common.CommonDto;
 
 import java.math.BigDecimal;
@@ -7,6 +8,7 @@ import java.math.BigDecimal;
 /**
  * Created by VMakarenko on 4/25/2015.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class VariantDto extends CommonDto{
     private String name;
     private BigDecimal price;

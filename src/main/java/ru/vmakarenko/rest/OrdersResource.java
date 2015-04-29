@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response;
 /**
  * Created by VMakarenko on 4/25/2015.
  */
-@Path("orders")
+@Path("private/orders")
 @Consumes("application/json")
 @Produces("application/json")
 public class OrdersResource {

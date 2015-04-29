@@ -63,7 +63,7 @@
 <div id='menu-edit-modal' class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form class="form" name="menuEditModal" ng-submit="submitMenuEdit()">
+            <form class="form" name="menuEditModal" ng-submit="saveItem()">
                 <div class="modal-header">
                     <h3>Изменение пункта меню</h3>
                 </div>
@@ -149,10 +149,7 @@
                                         class="btn btn-sm btn-primary" ng-click="custom.editing=false;">OK
                                 </button>
                                 <button type="button" ng-show="!custom.editing" ng-click="custom.editing = false"
-                                        class="btn btn-sm btn-primary" ng-click="editCustomMenuItem($index)">E
-                                </button>
-                                <button type="button" ng-show="!custom.editing" ng-click="custom.editing = false"
-                                        class="btn btn-sm btn-primary" ng-click="deleteCustomMenuItem($index)">D
+                                        class="btn btn-sm btn-primary" ng-click="deleteCustomMenuItem($index)">X
                                 </button>
                             </td>
 
@@ -212,7 +209,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-sm" data-dismiss="modal">Подтвердить
+                    <button type="button" ng-click="saveItem()" class="btn btn-sm" data-dismiss="modal">Подтвердить
                     </button>
                     <button type="button" class="btn btn-sm" data-dismiss="modal">Отменить</button>
                 </div>
