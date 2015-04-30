@@ -41,8 +41,6 @@ angular.module('app').controller('MenuEditController', ['$scope', '$rootScope', 
             });
         };
 
-
-
         $scope.deleteItem = function (id) {
             MenuEditService.delete(id);
         };

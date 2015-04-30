@@ -6,10 +6,9 @@ import ru.vmakarenko.dto.menuEdit.CustomDto;
 import ru.vmakarenko.dto.menuEdit.MenuEditDto;
 import ru.vmakarenko.dto.menuEdit.VariantDto;
 import ru.vmakarenko.dto.orders.OrderDto;
-import ru.vmakarenko.dto.users.RestaurantUserSignUpDto;
 import ru.vmakarenko.dto.users.UserDto;
 import ru.vmakarenko.dto.users.UserSignUpDto;
-import ru.vmakarenko.entities.Order;
+import ru.vmakarenko.entities.orders.Order;
 import ru.vmakarenko.entities.menu.CustomEntry;
 import ru.vmakarenko.entities.menu.MenuItem;
 import ru.vmakarenko.entities.menu.VariantEntry;
@@ -33,24 +32,26 @@ public class MapperService {
 
         // users stuff
         mapperFactory.classMap(UserSignUpDto.class, AbstractUser.class)
-                .byDefault();
+                .byDefault().register();
 
         mapperFactory.classMap(AbstractUser.class, UserDto.class)
-                .byDefault();
+                .byDefault().register();
 
 
         // orders stuff
 
         mapperFactory.classMap(Order.class , OrderDto.class)
-                .byDefault();
+                .field("client.surname", "clientName")
+                .field("restaurant.name", "restaurantName")
+                .byDefault().register();
 
         // menu stuff
         mapperFactory.classMap(MenuItem.class , MenuEditDto.class)
-                .byDefault();
+                .byDefault().register();
         mapperFactory.classMap(CustomEntry.class , CustomDto.class)
-                .byDefault();
+                .byDefault().register();
         mapperFactory.classMap(VariantEntry.class , VariantDto.class)
-                .byDefault();
+                .byDefault().register();
 
 
     }

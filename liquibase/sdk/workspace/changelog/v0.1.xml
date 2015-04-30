@@ -72,4 +72,18 @@
             ALTER TABLE menu_variants ALTER COLUMN menu_custom_id SET NOT NULL;
         </sql>
     </changeSet>
+
+    <changeSet id="init structure #8" author="vmakarenko">
+    <sql>
+    CREATE TABLE orders (
+        id uuid PRIMARY KEY,
+        client_id uuid REFERENCES users(id),
+        restaraunt_id uuid REFERENCES users(id),
+        time BigInt,
+        quantity Integer,
+        paid Boolean,
+        price numeric(17,2)
+    );
+    </sql>
+    </changeSet>
 </databaseChangeLog>

@@ -37,7 +37,7 @@
             </td>
             <td>
                 <ul ng-repeat="custom in menuItem.customs">
-                    {{custom.name}} -- {{custom.price}}
+                    {{custom.name}}<span ng-show="!custom.variants || custom.variants.length == 0"> -- {{custom.price}}</span>
                     <div ng-show="custom.variants">
                         <li ng-repeat="item in custom.variants">
                             {{item.name}} -- {{item.price}}
@@ -167,7 +167,7 @@
                                 +
                             </button>
                         </div>
-                        <div ng-show="!custom.variants">
+                        <div ng-show="!custom.variants || custom.variants.length == 0">
                             Отсутствуют
                         </div>
                         <div ng-show="custom.variants">
@@ -178,7 +178,7 @@
                                 <th>&nbsp;&nbsp;&nbsp;</th>
                                 </thead>
                                 <tbody>
-                                <tr ng-show="variant in custom.variants">
+                                <tr ng-repeat="variant in custom.variants">
                                     <td ng-show="!variant.editing" ng-click="variant.editing = true;">
                                         {{variant.name}}
                                     </td>
@@ -196,6 +196,12 @@
                                         <button type="button" class="btn btn-sm btn-primary"
                                                 ng-click="variant.editing = false;">
                                             OK
+                                        </button>
+                                    </td>
+                                    <td ng-show="!variant.editing">
+                                        <button type="button" class="btn btn-sm btn-primary"
+                                                ng-click="deleteCustomMenuItemVariant($index)">
+                                            X
                                         </button>
                                     </td>
 

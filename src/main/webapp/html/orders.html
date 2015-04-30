@@ -33,7 +33,7 @@
                 {{order.id}}
             </td>
             <td>
-                {{order.user.name}}
+                {{order.clientName}}
             </td>
             <td>
                 <ul>
@@ -43,10 +43,10 @@
                 </ul>
             </td>
             <td>
-                {{formatTime(order.bookTime)}}
+                {{formatTime(order.time)}}
             </td>
             <td>
-                {{order.sum}} руб.
+                {{order.price}} руб.
             </td>
             <td>
                 <div ng-show="order.status == 'paid'">

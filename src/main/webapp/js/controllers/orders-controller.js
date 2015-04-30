@@ -7,7 +7,7 @@ angular.module('app').controller('OrdersController',
     function ($scope,  OrdersService) {
         $scope.loadOrders = function(){
             OrdersService.getOrders()
-                .then(function(data){
+                .success(function(data){
                     $scope.orders = data.data;
                 });
         };

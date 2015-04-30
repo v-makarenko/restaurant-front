@@ -3,7 +3,7 @@ package ru.vmakarenko.services;
 import ru.vmakarenko.dao.OrderDao;
 import ru.vmakarenko.dao.filters.CommonFilter;
 import ru.vmakarenko.dto.orders.OrderDto;
-import ru.vmakarenko.entities.Order;
+import ru.vmakarenko.entities.orders.Order;
 import ru.vmakarenko.filters.OrderFilter;
 
 import javax.ejb.Stateless;
