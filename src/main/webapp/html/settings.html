@@ -1,4 +1,8 @@
+<div set-active-tab tab-id="'orders'"></div>
 <div>
+    <h3>
+        Информация о пользователе
+    </h3>
     <div class="form-group row col-offset-lg-2">
         <div class="col-lg-4">
             <label for="contactName">
@@ -8,7 +12,7 @@
         <div class="col-lg-4">
             <input id="contactName" name="contactName" class="form-control"
                    placeholder="ФИО контактного лица" required
-                   ng-model="newUser.contactName"/>
+                   ng-model="currentUser.contactName"/>
         </div>
     </div>
     <div class="form-group row col-offset-lg-2">
@@ -20,7 +24,7 @@
         <div class="col-lg-4">
             <input id="phone" name="phone" class="form-control"
                    placeholder="Телефон" required
-                   ng-model="newUser.phone"/>
+                   ng-model="currentUser.phone"/>
         </div>
     </div>
     <div class="form-group row col-offset-lg-2">
@@ -32,7 +36,7 @@
         <div class="col-lg-4">
             <input id="email" name="email" class="form-control"
                    placeholder="Электронная почта" required
-                   ng-model="newUser.email"/>
+                   ng-model="currentUser.email"/>
         </div>
     </div>
 </div>

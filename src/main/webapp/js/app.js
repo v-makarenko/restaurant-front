@@ -37,6 +37,10 @@ angular.module('app', [
     }]).run(function ($rootScope, AuthService, $location) {
     AuthService.isAuthenticated().success(function (data) {
         $rootScope.isAuthenticated = data;
+        AuthService.getCurrentUser().success(function(data){
+            $rootScope.currentUser = data.data;
+            $rootScope.$broadcast('event.userLoaded');
+        });
         callback();
     });
 

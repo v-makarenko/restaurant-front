@@ -18,7 +18,9 @@ angular.module('app').controller('MainController',
             )
         });
 
-        $rootScope.$on('events.sendReport');
+        $rootScope.$on('events.sendReport', function(){
+            $('#send-report-modal').modal('show');
+        });
 
 
         //$rootScope.isAuthenticated = true;

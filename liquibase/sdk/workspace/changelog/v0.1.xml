@@ -74,16 +74,24 @@
     </changeSet>
 
     <changeSet id="init structure #8" author="vmakarenko">
-    <sql>
-    CREATE TABLE orders (
-        id uuid PRIMARY KEY,
-        client_id uuid REFERENCES users(id),
-        restaraunt_id uuid REFERENCES users(id),
-        time BigInt,
-        quantity Integer,
-        paid Boolean,
-        price numeric(17,2)
-    );
-    </sql>
+        <sql>
+            CREATE TABLE orders (
+            id uuid PRIMARY KEY,
+            client_id uuid REFERENCES users(id),
+            restaraunt_id uuid REFERENCES users(id),
+            time BigInt,
+            quantity Integer,
+            paid Boolean,
+            price numeric(17,2)
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="init structure #9" author="vmakarenko">
+        <sql>
+            CREATE TABLE order_menu_items (
+            order_id uuid references orders(id),
+            menu_item_id uuid references menu_items(id)
+            );
+        </sql>
     </changeSet>
 </databaseChangeLog>

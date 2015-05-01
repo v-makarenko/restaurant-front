@@ -46,13 +46,8 @@ angular.module("app").service('AuthService',
         };
 
         this.getCurrentUser = function(){
-            return $http.post(
-                    Consts.url + 'rest',
-                {
-                    action:'action',
-                    entityType:'currentUser',
-                    method:'get'
-                }
+            return $http.get(
+                   url + 'getCurrentUser'
             );
         }
     }

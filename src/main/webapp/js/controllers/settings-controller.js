@@ -3,9 +3,12 @@
  */
 
 
-angular.module('app').controller('SignUpController',
-    function ($scope, $location, AuthService) {
-        $scope.newUser = window.currentUser;
+angular.module('app').controller('SettingsController',
+    function ($scope, $rootScope) {
+        $rootScope.$on('event.userLoaded', function(){
+            $scope.rootScope = $rootScope.currentUser;
+        });
+
         $scope.save = function(){
 
         }

@@ -75,11 +75,11 @@ public class AuthResource {
     }
 
     @GET
-    @Path("currentUser")
+    @Path("getCurrentUser")
     public Response getCurrentUser(@Context HttpServletRequest request){
         CommonResponse response = new CommonResponse("OK");
         response.setData(userService.findByUsername((String)request.getSession().getAttribute(AccessAuthDto.PARAM_AUTH_ID)));
-        return Response.ok().build();
+        return Response.ok(response).build();
     }
 
     @POST

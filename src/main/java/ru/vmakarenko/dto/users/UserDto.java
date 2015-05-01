@@ -10,6 +10,7 @@ public class UserDto extends CommonDto {
     private String surname;
     private String phone;
     private String email;
+    private String contactName;
 
 
     public String getName() {
@@ -42,5 +43,13 @@ public class UserDto extends CommonDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getContactName() {
+        return contactName;
+    }
+
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
     }
 }
