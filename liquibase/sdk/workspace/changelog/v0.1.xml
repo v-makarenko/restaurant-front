@@ -94,4 +94,15 @@
             );
         </sql>
     </changeSet>
+    <changeSet id="init structure #10" author="vmakarenko">
+        <sql>
+            ALTER TABLE menu_items ADD COLUMN weight Integer;
+        </sql>
+    </changeSet>
+    <changeSet id="init structure #11" author="vmakarenko">
+        <sql>
+            ALTER TABLE menu_variants ADD COLUMN weight Integer;
+            ALTER TABLE menu_customs ADD COLUMN weight Integer;
+        </sql>
+    </changeSet>
 </databaseChangeLog>

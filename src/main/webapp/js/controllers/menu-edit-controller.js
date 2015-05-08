@@ -3,9 +3,14 @@
  */
 
 
-angular.module('app').controller('MenuEditController', ['$scope', '$rootScope', 'MenuEditService',
-    function ($scope, $rootScope, MenuEditService) {
+angular.module('app').controller('MenuEditController', ['$scope', '$rootScope', 'MenuEditService', '$routeParams', '$location',
+    function ($scope, $rootScope, MenuEditService, $routeParams, $location) {
         $rootScope.$broadcast('main.tabSelected', 'menu');
+
+
+        $scope.goToEditMenu = function () {
+            $location.path('/menuEdit?edit=true');
+        };
 
         // working with menu items
 
@@ -112,6 +117,9 @@ angular.module('app').controller('MenuEditController', ['$scope', '$rootScope', 
         };
         $scope.deleteCustomMenuItemVariant = function(parentIndex, index){
             $scope.currentMenuItem.customs[parentIndex].variants.splice(index, 1);
-        }
+        };
+
+        $scope.menuEditMode = !($routeParams.edit == undefined || $routeParams.edit == false);
+
     }]);
 

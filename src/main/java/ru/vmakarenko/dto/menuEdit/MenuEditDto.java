@@ -15,6 +15,7 @@ public class MenuEditDto extends CommonDto{
     private String name;
     private List<CustomDto> customs;
     private String description;
+    private Integer weight;
 
     public BigDecimal getPrice() {
         return price;
@@ -46,5 +47,13 @@ public class MenuEditDto extends CommonDto{
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
     }
 }

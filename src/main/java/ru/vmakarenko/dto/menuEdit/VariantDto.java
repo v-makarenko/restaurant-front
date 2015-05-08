@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 public class VariantDto extends CommonDto{
     private String name;
     private BigDecimal price;
+    private Integer weight;
 
     public String getName() {
         return name;
@@ -27,5 +28,13 @@ public class VariantDto extends CommonDto{
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
     }
 }

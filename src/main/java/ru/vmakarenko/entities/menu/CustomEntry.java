@@ -17,11 +17,14 @@ public class CustomEntry extends DomainEntity {
     private String name;
     @Column(name="price")
     private BigDecimal price;
+    @Column(name="weight")
+    private Integer weight;
     @OneToMany(mappedBy="customEntry", cascade = CascadeType.ALL)
     private List<VariantEntry> variants;
     @ManyToOne
     @JoinColumn(name = "menu_item_id")
     private MenuItem menuItem;
+
 
     public String getName() {
         return name;
@@ -53,5 +56,13 @@ public class CustomEntry extends DomainEntity {
 
     public void setMenuItem(MenuItem menuItem) {
         this.menuItem = menuItem;
+    }
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
     }
 }

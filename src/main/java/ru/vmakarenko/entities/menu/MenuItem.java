@@ -21,6 +21,8 @@ public class MenuItem extends DomainEntity {
     private List<CustomEntry> customs;
     @Column(name="description")
     private String description;
+    @Column(name="weight")
+    private Integer weight;
 
     public String getName() {
         return name;
@@ -52,5 +54,13 @@ public class MenuItem extends DomainEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
     }
 }

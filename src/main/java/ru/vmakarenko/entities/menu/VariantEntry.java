@@ -15,6 +15,8 @@ public class VariantEntry extends DomainEntity {
     private String name;
     @Column(name = "price")
     private BigDecimal price;
+    @Column(name="weight")
+    private Integer weight;
     @ManyToOne
     @JoinColumn(name = "menu_custom_id")
     private CustomEntry customEntry;
@@ -41,5 +43,13 @@ public class VariantEntry extends DomainEntity {
 
     public void setCustomEntry(CustomEntry customsEntry) {
         this.customEntry = customsEntry;
+    }
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
     }
 }

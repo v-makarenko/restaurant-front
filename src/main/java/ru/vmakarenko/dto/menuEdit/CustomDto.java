@@ -14,6 +14,7 @@ public class CustomDto extends CommonDto{
     private String name;
     private List<VariantDto> variants;
     private BigDecimal price;
+    private Integer weight;
 
     public List<VariantDto> getVariants() {
         return variants;
@@ -37,5 +38,13 @@ public class CustomDto extends CommonDto{
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
     }
 }
