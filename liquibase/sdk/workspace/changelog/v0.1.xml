@@ -105,4 +105,57 @@
             ALTER TABLE menu_customs ADD COLUMN weight Integer;
         </sql>
     </changeSet>
+    <changeSet id="init structure #12" author="vmakarenko">
+        <sql>
+            CREATE TABLE week_day (
+            id uuid PRIMARY KEY,
+            name text,
+            value text
+            );
+
+            CREATE TABLE menu_edit_conn_week_day (
+            week_day_id uuid REFERENCES week_day(id),
+            menu_item_id uuid REFERENCES menu_items(id)
+            );
+
+            CREATE TABLE menu_customs_conn_week_day (
+            week_day_id uuid REFERENCES week_day(id),
+            menu_custom_id uuid REFERENCES menu_customs(id)
+            );
+
+            CREATE TABLE menu_variants_conn_week_day (
+            week_day_id uuid REFERENCES week_day(id),
+            menu_variant_id uuid REFERENCES menu_variants(id)
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="init structure #13" author="vmakarenko">
+        <sql>
+            ALTER TABLE week_day ADD COLUMN short_value text;
+
+            INSERT INTO week_day(
+            id, name, value, short_value)
+            VALUES ('111ee1cd-a110-0000-0000-000000000001', 'MON', 'Понедельник', 'Пн');
+            INSERT INTO week_day(
+            id, name, value, short_value)
+            VALUES ('111ee1cd-a110-0000-0000-000000000002', 'TUE', 'Вторник', 'Вт');
+            INSERT INTO week_day(
+            id, name, value, short_value)
+            VALUES ('111ee1cd-a110-0000-0000-000000000003', 'WED', 'Среда', 'Ср');
+            INSERT INTO week_day(
+            id, name, value, short_value)
+            VALUES ('111ee1cd-a110-0000-0000-000000000004', 'THR', 'Четверг', 'Чт');
+            INSERT INTO week_day(
+            id, name, value, short_value)
+            VALUES ('111ee1cd-a110-0000-0000-000000000005', 'FRI', 'Пятница', 'Пт');
+            INSERT INTO week_day(
+            id, name, value, short_value)
+            VALUES ('111ee1cd-a110-0000-0000-000000000006', 'SAT', 'Суббота', 'Сб');
+            INSERT INTO week_day(
+            id, name, value, short_value)
+            VALUES ('111ee1cd-a110-0000-0000-000000000007', 'SUN', 'Воскресение', 'Вс');
+
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>

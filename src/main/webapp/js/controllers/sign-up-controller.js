@@ -10,7 +10,7 @@ angular.module('app').controller('SignUpController',
         $scope.signUp = function () {
             AuthService.signUp($scope.newUser)
                 .success(function () {
-                    $location.path('#/login/success')
+                    $location.path('#/login')
                 });
         }
 

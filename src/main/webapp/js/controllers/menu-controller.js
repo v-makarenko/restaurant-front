@@ -16,7 +16,9 @@ angular.module('app').controller('MenuController', ['$scope', '$rootScope', '$lo
         // default is orders page
         $scope.menuItemSelected = TAB_ORDERS_ID;
 
+
         $scope.location = $location;
+
         $scope.gotoLink = function(link){
             $location.path(link)
         };

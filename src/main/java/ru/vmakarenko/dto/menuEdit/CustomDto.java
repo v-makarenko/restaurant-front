@@ -2,6 +2,7 @@ package ru.vmakarenko.dto.menuEdit;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import ru.vmakarenko.dto.common.CommonDto;
+import ru.vmakarenko.dto.common.DayOfWeekDto;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -15,6 +16,7 @@ public class CustomDto extends CommonDto{
     private List<VariantDto> variants;
     private BigDecimal price;
     private Integer weight;
+    private List<DayOfWeekDto> dayOfWeekList;
 
     public List<VariantDto> getVariants() {
         return variants;
@@ -46,5 +48,13 @@ public class CustomDto extends CommonDto{
 
     public void setWeight(Integer weight) {
         this.weight = weight;
+    }
+
+    public List<DayOfWeekDto> getDayOfWeekList() {
+        return dayOfWeekList;
+    }
+
+    public void setDayOfWeekList(List<DayOfWeekDto> dayOfWeekList) {
+        this.dayOfWeekList = dayOfWeekList;
     }
 }

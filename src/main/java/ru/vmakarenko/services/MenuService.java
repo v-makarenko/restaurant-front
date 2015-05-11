@@ -1,10 +1,13 @@
 package ru.vmakarenko.services;
 
+import ru.vmakarenko.dao.DayOfWeekDao;
 import ru.vmakarenko.dao.MenuDao;
 import ru.vmakarenko.dao.OrderDao;
 import ru.vmakarenko.dao.filters.CommonFilter;
+import ru.vmakarenko.dto.common.DayOfWeekDto;
 import ru.vmakarenko.dto.menuEdit.MenuEditDto;
 import ru.vmakarenko.dto.orders.OrderDto;
+import ru.vmakarenko.entities.common.DayOfWeek;
 import ru.vmakarenko.entities.menu.MenuItem;
 import ru.vmakarenko.filters.MenuFilter;
 import ru.vmakarenko.filters.OrderFilter;
@@ -25,6 +28,8 @@ public class MenuService {
     private MenuDao menuDao;
     @Inject
     private MapperService mapperService;
+    @Inject
+    private DayOfWeekDao dayOfWeekDao;
 
     public List<MenuEditDto> getAll(MenuFilter filter){
         return menuDao.findAll(new CommonFilter(filter))
@@ -56,5 +61,9 @@ public class MenuService {
             });
         }
         return menuItem;
+    }
+
+    public List<DayOfWeekDto> getAllDaysOfWeek() {
+        return mapperService.map(dayOfWeekDao.findAll(), DayOfWeekDto.class);
     }
 }

@@ -47,5 +47,11 @@ public class MenuEditResource {
         menuService.delete(id);
         return Response.ok().build();
     }
+
+    @GET
+    @Path("allDaysOfWeek")
+    public Response getAllDaysOfWeek(){
+        return Response.ok(menuService.getAllDaysOfWeek()).build();
+    }
 }
 

@@ -13,6 +13,7 @@ public class VariantDto extends CommonDto{
     private String name;
     private BigDecimal price;
     private Integer weight;
+    private Integer dayOfWeek;
 
     public String getName() {
         return name;
@@ -36,5 +37,13 @@ public class VariantDto extends CommonDto{
 
     public void setWeight(Integer weight) {
         this.weight = weight;
+    }
+
+    public Integer getDayOfWeek() {
+        return dayOfWeek;
+    }
+
+    public void setDayOfWeek(Integer dayOfWeek) {
+        this.dayOfWeek = dayOfWeek;
     }
 }

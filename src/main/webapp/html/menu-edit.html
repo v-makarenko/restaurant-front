@@ -29,6 +29,9 @@
             Стоимость
         </th>
         <th>
+            Дни
+        </th>
+        <th ng-show="menuEditMode">
             Действия
         </th>
 
@@ -36,7 +39,7 @@
         <tbody>
         <tr ng-repeat="menuItem in menuItems">
             <td>
-                {{$index}}
+                {{$index + 1}}
             </td>
             <td>
                 {{menuItem.name}}
@@ -59,6 +62,9 @@
                 {{menuItem.price}} руб.
             </td>
             <td>
+                <span ng-repeat="weekDay in weekDays">{{weekDay.shortValue}} </span>
+            </td>
+            <td ng-show="menuEditMode">
                 <button class="btn btn-sm btn-primary" ng-click="editMenuItem($index)" ng-show="menuEditMode">E</button>
                 <button class="btn btn-sm btn-primary" ng-click="deleteMenuItem($index)" ng-show="menuEditMode">X</button>
             </td>
@@ -161,10 +167,10 @@
                         </thead>
                         <tbody>
                         <tr ng-repeat='custom in currentMenuItem.customs'>
-                            <td ng-show="!custom.editing" ng-click="if(menuEditMode) custom.editing = true;">
+                            <td ng-show="!custom.editing" ng-click="if(menuEditMode){custom.editing = true;}">
                                 {{custom.name}}
                             </td>
-                            <td ng-show="!custom.editing" ng-click="if(menuEditMode) custom.editing = true;">
+                            <td ng-show="!custom.editing" ng-click="if(menuEditMode){custom.editing = true;}">
                                 {{custom.price}}
                             </td>
                             <td ng-show="custom.editing">
@@ -236,7 +242,7 @@
                                     </td>
                                     <td ng-show="!variant.editing">
                                         <button type="button" class="btn btn-sm btn-primary"  ng-show="menuEditMode"
-                                                ng-click="deleteCustomMenuItemVariant($index)">
+                                                ng-click="deleteCustomMenuItemVariant($parent.$index, $index)">
                                             X
                                         </button>
                                     </td>

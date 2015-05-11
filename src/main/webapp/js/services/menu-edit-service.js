@@ -21,5 +21,9 @@ angular.module("app").service('MenuEditService',
             });
             return deferred.promise;
         };
+
+        this.getAllWeekDays = function(){
+            return $http.get(url + '/allDaysOfWeek');
+        }
     }
 );

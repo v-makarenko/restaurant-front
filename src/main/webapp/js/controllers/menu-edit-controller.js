@@ -9,7 +9,7 @@ angular.module('app').controller('MenuEditController', ['$scope', '$rootScope', 
 
 
         $scope.goToEditMenu = function () {
-            $location.path('/menuEdit?edit=true');
+            $location.path('/menuEdit/true');
         };
 
         // working with menu items
@@ -119,7 +119,13 @@ angular.module('app').controller('MenuEditController', ['$scope', '$rootScope', 
             $scope.currentMenuItem.customs[parentIndex].variants.splice(index, 1);
         };
 
-        $scope.menuEditMode = !($routeParams.edit == undefined || $routeParams.edit == false);
+        $scope.menuEditMode = !($routeParams.edit == undefined || $routeParams.edit == "false")
+
+        MenuEditService.getAllWeekDays().success(function(data){
+            $scope.weekDays = data;
+        });
+
+        $scope.m
 
     }]);
 

@@ -11,7 +11,7 @@ angular.module('app').controller('MainController',
 
         // reaction for global events
         $rootScope.$on('events.exit', function () {
-            AuthService.logout().error(function () {
+            AuthService.logout().success(function () {
                     $rootScope.isAuthenticated = false;
                     $location.path('/login');
                 }

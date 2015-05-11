@@ -10,7 +10,7 @@ angular.module('app', [
                 templateUrl: 'html/orders.html',
                 controller: 'OrdersController'
             }).
-            when('/menuEdit', {
+            when('/menuEdit/:edit', {
                 templateUrl: 'html/menu-edit.html',
                 controller: 'MenuEditController'
             }).
@@ -47,8 +47,8 @@ angular.module('app', [
 
     var callback = function () {
         if($rootScope.isAuthenticated === undefined) return;
-        if ($location.url() != 'login'
-            && $location.url() != 'signUp'
+        if ($location.url() != '/login'
+            && $location.url() != '/signUp'
             && !$rootScope.isAuthenticated) {
             $location.path('/login');
         }

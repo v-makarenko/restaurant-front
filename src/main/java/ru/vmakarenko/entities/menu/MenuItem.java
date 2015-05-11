@@ -1,7 +1,7 @@
 package ru.vmakarenko.entities.menu;
 
-import ru.vmakarenko.dto.menuEdit.CustomDto;
 import ru.vmakarenko.entities.DomainEntity;
+import ru.vmakarenko.entities.common.DayOfWeek;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -23,6 +23,9 @@ public class MenuItem extends DomainEntity {
     private String description;
     @Column(name="weight")
     private Integer weight;
+    @ManyToMany
+    @JoinTable(name="menu_edit_conn_week_day", joinColumns = @JoinColumn(name = "menu_item_id"), inverseJoinColumns = @JoinColumn(name = "week_day_id"))
+    private List<DayOfWeek> dayOfWeekList;
 
     public String getName() {
         return name;
@@ -62,5 +65,13 @@ public class MenuItem extends DomainEntity {
 
     public void setWeight(Integer weight) {
         this.weight = weight;
+    }
+
+    public List<DayOfWeek> getDayOfWeekList() {
+        return dayOfWeekList;
+    }
+
+    public void setDayOfWeekList(List<DayOfWeek> dayOfWeek) {
+        this.dayOfWeekList = dayOfWeek;
     }
 }
