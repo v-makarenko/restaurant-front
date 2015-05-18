@@ -2,34 +2,39 @@
 <web-app xmlns="http://java.sun.com/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
-		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-         version="3.0">
+		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"   version="3.0">
     <context-param>
         <param-name>resteasy.scan</param-name>
-        <param-value>false</param-value>
+        <param-value>true</param-value>
     </context-param>
+    <!--<context-param>-->
+        <!--<param-name>resteasy.scan.providers</param-name>-->
+        <!--<param-value>false</param-value>-->
+    <!--</context-param>-->
+    <!--<context-param>-->
+        <!--<param-name>resteasy.scan.resources</param-name>-->
+        <!--<param-value>false</param-value>-->
+    <!--</context-param>-->
+
     <context-param>
-        <param-name>resteasy.scan.providers</param-name>
-        <param-value>false</param-value>
+        <param-name>resteasy.servlet.mapping.prefix</param-name>
+        <param-value>/api</param-value>
     </context-param>
-    <context-param>
-        <param-name>resteasy.scan.resources</param-name>
-        <param-value>false</param-value>
-    </context-param>
+    <listener>
+        <listener-class>
+            org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap
+        </listener-class>
+    </listener>
 
     <servlet>
         <servlet-name>RestServlet</servlet-name>
-        <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
-        <init-param>
-            <param-name>com.sun.jersey.config.property.packages</param-name>
-            <param-value>ru.vmakarenko.rest</param-value>
-        </init-param>
-        <init-param>
-            <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
-            <param-value>true</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-        <async-supported>true</async-supported>
+        <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
+        <!--<init-param>-->
+            <!--<param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>-->
+            <!--<param-value>true</param-value>-->
+        <!--</init-param>-->
+        <!--<load-on-startup>1</load-on-startup>-->
+        <!--<async-supported>true</async-supported>-->
     </servlet>
     <servlet-mapping>
         <servlet-name>RestServlet</servlet-name>

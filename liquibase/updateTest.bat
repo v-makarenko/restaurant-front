@@ -1,0 +1,2 @@
+liquibase --url=jdbc:postgresql://46.242.73.189:55433/restaurants --driver=org.postgresql.Driver --username=postgres --password="111111" --changeLogFile=sdk/workspace/changelog/cumulative.xml update
+pause;

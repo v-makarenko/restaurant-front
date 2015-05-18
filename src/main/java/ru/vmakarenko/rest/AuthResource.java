@@ -4,16 +4,13 @@ package ru.vmakarenko.rest;
 import ru.vmakarenko.dto.common.CommonListResponse;
 import ru.vmakarenko.dto.common.CommonResponse;
 import ru.vmakarenko.dto.users.AccessAuthDto;
-import ru.vmakarenko.dto.common.BooleanDto;
 import ru.vmakarenko.dto.users.UserAuthDto;
-import ru.vmakarenko.dto.users.UserDto;
 import ru.vmakarenko.dto.users.UserSignUpDto;
 import ru.vmakarenko.services.AuthService;
 import ru.vmakarenko.services.UserService;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.NewCookie;
@@ -36,7 +33,7 @@ public class AuthResource {
     @POST
     @Path("login")
     public Response login(@Context HttpServletRequest request, UserAuthDto userAuthDto) {
-        AccessAuthDto responseDto  = authService.login(userAuthDto);
+        AccessAuthDto responseDto = authService.login(userAuthDto);
         if (responseDto != null) {
             request.getSession().setAttribute(AccessAuthDto.PARAM_AUTH_ID, responseDto.getId());
             request.getSession().setAttribute(AccessAuthDto.PARAM_AUTH_TOKEN, responseDto.getToken());
@@ -48,7 +45,7 @@ public class AuthResource {
                     .ok(responseDto)
                     .cookie(new NewCookie[]{new NewCookie("token", responseDto.getToken()), new NewCookie("id", responseDto.getId())})
                     .build();
-        }else{
+        } else {
             return Response.status(Response.Status.FORBIDDEN).build();
         }
     }
@@ -76,15 +73,15 @@ public class AuthResource {
 
     @GET
     @Path("getCurrentUser")
-    public Response getCurrentUser(@Context HttpServletRequest request){
+    public Response getCurrentUser(@Context HttpServletRequest request) {
         CommonResponse response = new CommonResponse("OK");
-        response.setData(userService.findByUsername((String)request.getSession().getAttribute(AccessAuthDto.PARAM_AUTH_ID)));
+        response.setData(userService.findByUsername((String) request.getSession().getAttribute(AccessAuthDto.PARAM_AUTH_ID)));
         return Response.ok(response).build();
     }
 
     @POST
     @Path("signUp")
-    public Response signUp(UserSignUpDto dto){
+    public Response signUp(UserSignUpDto dto) {
         userService.create(dto);
         return Response.ok(new CommonListResponse("OK")).build();
     }
